@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class log extends AppCompatActivity {
     Button signupbtn,loginbtn,forgot;
     TextInputLayout username,upassword;
+    TextInputLayout a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
