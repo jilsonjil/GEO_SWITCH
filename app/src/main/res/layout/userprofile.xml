@@ -43,7 +43,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/profile_image"
                 android:includeFontPadding="false"
-                android:text="Jilson_16"
                 android:textSize="14sp" />
         </RelativeLayout>
 

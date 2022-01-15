@@ -41,54 +41,54 @@ public class log extends AppCompatActivity {
                 if(!us_name.isEmpty())
                 {
                     username.setError(null);
-                   if(!pass_word.isEmpty())
-                   {
-                       upassword.setError(null);
-                       upassword.setEnabled(false);
-                       final String user_name=username.getEditText().getText().toString();
+                    if(!pass_word.isEmpty())
+                    {
+                        upassword.setError(null);
+                        upassword.setEnabled(false);
+                        final String user_name=username.getEditText().getText().toString();
 
-                       final String passw=upassword.getEditText().getText().toString();
-                       FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-                       DatabaseReference databaseReference=firebaseDatabase.getReference("user");
-                       Query checkmail=databaseReference.orderByChild("username").equalTo(user_name);
-                       checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                               if(dataSnapshot.exists())
-                               {
-                                   username.setError(null);
+                        final String passw=upassword.getEditText().getText().toString();
+                        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+                        DatabaseReference databaseReference=firebaseDatabase.getReference("user");
+                        Query checkmail=databaseReference.orderByChild("username").equalTo(user_name);
+                        checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if(dataSnapshot.exists())
+                                {
+                                    username.setError(null);
 
-                                   String passwordcheck=dataSnapshot.child(user_name).child("password").getValue(String.class);
-                                   if(pass_word.equals(passw))
-                                   {
-                                      upassword.setError(null);
-                                       Toast.makeText(getApplicationContext(),"Login Succesfully",Toast.LENGTH_SHORT).show();
-                                      Intent intent=new Intent(getApplicationContext(),dashboard.class);
-                                       startActivity(intent);
-                                       finish();
-                                  } else
-                                   { upassword.setError("wrong password");
+                                    String passwordcheck=dataSnapshot.child(user_name).child("password").getValue(String.class);
+                                    if(pass_word.equals(passw))
+                                    {
+                                        upassword.setError(null);
+                                        Toast.makeText(getApplicationContext(),"Login Succesfully",Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(getApplicationContext(),dashboard.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else
+                                    { upassword.setError("wrong password");
 
-                                   }
+                                    }
 
-                               }
-                               else{
-                                   username.setError("user doesnot exist");
-                               }
-                           }
+                                }
+                                else{
+                                    username.setError("user doesnot exist");
+                                }
+                            }
 
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                           }
-                       });
+                            }
+                        });
 
 
-                   }
-                   else
-                   {
-                       upassword.setError("please enter your password");
-                   }
+                    }
+                    else
+                    {
+                        upassword.setError("please enter your password");
+                    }
                 }
                 else
                 {
