@@ -1,12 +1,17 @@
 package com.example.geo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,12 +82,18 @@ public class register extends AppCompatActivity {
                                             String Suname_s=u_name.getEditText().getText().toString();
 
                                             storingdata storingdatas = new storingdata(Sfname_s, Smail_s, Sphone_s, Spass_s, Scpass_s,Suname_s);
-                                            reference.child(Sfname_s).setValue(storingdatas);
-                                            Toast.makeText(getApplicationContext(), "Registartion successfully", Toast.LENGTH_SHORT).show();
+                                            reference.child(Suname_s).setValue(storingdatas).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(getApplicationContext(), "Registartion successfully", Toast.LENGTH_SHORT).show();
+                                                    SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                                                    pref.edit().putString("userId",Suname_s).apply();
+                                                    Intent intent = new Intent(getApplicationContext(), log.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
 
-                                            Intent intent = new Intent(getApplicationContext(), log.class);
-                                            startActivity(intent);
-                                            finish();
                                         }
                                         else
                                             {

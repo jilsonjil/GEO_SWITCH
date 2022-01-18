@@ -94,20 +94,25 @@
             </RadioGroup>
 
 
-    <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rlocation"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rlocation">
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_baseline_edit_location_24"
+            >
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Lcation"
-                android:inputType="textPassword"/>
+                android:hint="Location"
+                android:enabled="false"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
 
     </LinearLayout>

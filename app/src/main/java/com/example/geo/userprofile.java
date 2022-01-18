@@ -3,7 +3,9 @@ package com.example.geo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,13 +42,15 @@ public class userprofile extends AppCompatActivity {
     }
     private void getdataFromDb()
     {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String userId = pref.getString("userId","");
         final  FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference reference=firebaseDatabase.getReference("user");
+        DatabaseReference reference=firebaseDatabase.getReference("user").child(userId);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 storingdata storingdata=datasnapshot.getValue(com.example.geo.storingdata.class);
-                f_name.setText(storingdata.name);
+               f_name.setText(storingdata.name);
                 u_name.setText(storingdata.username);
                 tname.setText(storingdata.name);
                 tuname.setText(storingdata.username);

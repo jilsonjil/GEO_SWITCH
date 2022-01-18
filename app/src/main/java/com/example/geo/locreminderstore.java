@@ -1,17 +1,19 @@
 package com.example.geo;
 
+import java.util.List;
+
 public class locreminderstore {
     String Tittle;
     String Date;
     String Reminder;
     String Radius;
-    String Location;
+    List<Double> Location;
     public locreminderstore() {
     }
 
 
 
-    public locreminderstore(String Tittle, String Date, String Reminder, String Radius, String Location) {
+    public locreminderstore(String Tittle, String Date, String Reminder, String Radius, List<Double> Location) {
         this.Tittle = Tittle;
         this.Date = Date;
         this.Reminder = Reminder;
@@ -51,11 +53,11 @@ public class locreminderstore {
         this.Radius = Radius;
     }
 
-    public String getLocation() {
+    public List<Double> getLocation() {
         return Location;
     }
 
-    public void setLocation(String Location) {
+    public void setLocation(List<Double> Location) {
         this.Location = Location;
     }
 }

@@ -1,9 +1,14 @@
 package com.example.geo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +17,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class mprofilel extends AppCompatActivity {
     EditText editText;
@@ -24,6 +33,7 @@ public class mprofilel extends AppCompatActivity {
     RadioButton rb;
     int year,month,day;
     Button savebtn;
+    List<Double> location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,22 +87,58 @@ public class mprofilel extends AppCompatActivity {
                 }
             }
         });
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                year=calendar.get(Calendar.YEAR);
-                month=calendar.get(Calendar.MONTH);
-                day=calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog=new DatePickerDialog(mprofilel.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+        editText.setOnClickListener(v -> {
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-                    }
-                },year,month,day);
-                datePickerDialog.show();
+                }
+            },year,month,day);
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            datePickerDialog.show();
 
-            }
+        });
+        lloc.setEndIconOnClickListener(v -> {
+            Intent intent = new Intent(mprofilel.this, MapsActivity.class);
+            startActivityForResult(intent, 102);
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 102 && resultCode == Activity.RESULT_OK && data != null) {
+
+            double lon = data.getDoubleExtra("longitude", 0);
+            double lat = data.getDoubleExtra("latitude", 0);
+
+            ArrayList<Double> listLoc = new ArrayList<>();
+            listLoc.add(lon);
+            listLoc.add(lat);
+            location = listLoc;
+
+            if (Geocoder.isPresent()) {
+                Geocoder geocoder = new Geocoder(this);
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(lat,lon,1);
+                    if (!addresses.isEmpty()) {
+                        if (addresses.get(0).getMaxAddressLineIndex() > 0) {
+                            lloc.getEditText().setText(
+                                    addresses.get(0).getAddressLine(0)
+                            );
+                            return;
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            lloc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
+        }
+    }
+
 }

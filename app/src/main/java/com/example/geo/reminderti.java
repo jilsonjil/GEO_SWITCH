@@ -2,6 +2,7 @@ package com.example.geo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.geo.R;
 import com.example.geo.reminderl;
+import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -104,22 +106,20 @@ public class reminderti extends AppCompatActivity {
                 }
             }
         });
-        editText1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                year=calendar.get(Calendar.YEAR);
-                month=calendar.get(Calendar.MONTH);
-                day=calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog=new DatePickerDialog(reminderti.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        editText1.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+        editText1.setOnClickListener(v -> {
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    editText1.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-                    }
-                },year,month,day);
-                datePickerDialog.show();
+                }
+            },year,month,day);
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            datePickerDialog.show();
 
-            }
         });
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override
