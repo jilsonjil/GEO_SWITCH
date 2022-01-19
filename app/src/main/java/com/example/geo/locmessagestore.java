@@ -1,11 +1,12 @@
 package com.example.geo;
+import java.util.List;
 
 public class locmessagestore {
     String Contact_name;
     String Phone_number;
     String Date;
     String Message;
-    String Location;
+    List<Double> Location;
 
     public locmessagestore() {
     }
@@ -13,14 +14,13 @@ public class locmessagestore {
 
 
 
-    public locmessagestore(String contact_name, String phone_number, String date, String message, String location) {
-        Contact_name = contact_name;
-        Phone_number = phone_number;
-        Date = date;
-        Message = message;
-        Location = location;
+    public locmessagestore(String Contact_name, String Phone_number, String Date, String Message, List<Double> Location) {
+        this.Contact_name = Contact_name;
+        this.Phone_number = Phone_number;
+        this.Date = Date;
+        this.Message = Message;
+        this.Location = Location;
     }
-
     public String getContact_name() {
         return Contact_name;
     }
@@ -53,12 +53,14 @@ public class locmessagestore {
         Message = message;
     }
 
-    public String getLocation() {
+    public List<Double> getLocation() {
         return Location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(List<Double> location) {
         Location = location;
     }
+
+
 }
 

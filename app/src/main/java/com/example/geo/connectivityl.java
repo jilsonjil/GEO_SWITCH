@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -71,8 +73,10 @@ public class connectivityl extends AppCompatActivity {
                         {
                             loc.setError(null);
                             loc.setEnabled(false);
-                            firebaseDatabase=FirebaseDatabase.getInstance();
-                            reference=firebaseDatabase.getReference("l_connectivity");
+                            SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                            String uname=pref.getString("userId","");
+                            firebaseDatabase = FirebaseDatabase.getInstance();
+                            reference = firebaseDatabase.getReference("user").child(uname).child("location_connectivity");
                             String fl_tittle = ltittle.getEditText().getText().toString();
                             String fl_dd = dd.getEditText().getText().toString();
                             String fl_loc = loc.getEditText().getText().toString();

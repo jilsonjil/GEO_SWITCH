@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -16,9 +18,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -33,6 +38,8 @@ public class mprofilel extends AppCompatActivity {
     RadioButton rb;
     int year,month,day;
     Button savebtn;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
     List<Double> location;
 
     @Override
@@ -67,6 +74,18 @@ public class mprofilel extends AppCompatActivity {
                         {
                             lloc.setError(null);
                             lloc.setEnabled(false);
+                            SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                            String uname=pref.getString("userId","");
+                            firebaseDatabase = FirebaseDatabase.getInstance();
+                            reference = firebaseDatabase.getReference("user").child(uname).child("location_reminder");
+                            String fl_tittle = ltittle.getEditText().getText().toString();
+                            String fl_dd = dd.getEditText().getText().toString();
+                            String fl_rb=rb.getText().toString();
+
+                            locmprofilestore locmprofiles = new locmprofilestore(fl_tittle,fl_rb,fl_dd,location);
+                            reference.child(fl_tittle).setValue(locmprofiles);
+                            Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
+
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
                             startActivity(intent);
                             finish();

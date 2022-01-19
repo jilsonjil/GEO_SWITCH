@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -71,8 +73,10 @@ public class messaget extends AppCompatActivity {
                               {
                                   tim.setError(null);
                                   tim.setEnabled(false);
-                                  firebaseDatabase=FirebaseDatabase.getInstance();
-                                  reference=firebaseDatabase.getReference("t_message");
+                                  SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                                  String uname=pref.getString("userId","");
+                                  firebaseDatabase = FirebaseDatabase.getInstance();
+                                  reference = firebaseDatabase.getReference("user").child(uname).child("time_message");
                                   String ft_cname=co_name.getEditText().getText().toString();
                                   String ft_dd=dd.getEditText().getText().toString();
                                   String ft_pno=phn_no.getEditText().getText().toString();

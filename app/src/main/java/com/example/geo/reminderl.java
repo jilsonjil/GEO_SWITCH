@@ -62,23 +62,21 @@ public class reminderl extends AppCompatActivity {
 
                 if (!l_tittle.isEmpty()) {
                     ltitle.setError(null);
-                    ltitle.setEnabled(false);
                     if (!l_dd.isEmpty()) {
                         dd.setError(null);
-                        dd.setEnabled(false);
+
                         if (!l_task.isEmpty()) {
                             task.setError(null);
-                            task.setEnabled(false);
+
                             if (!l_rad.isEmpty()) {
                                 rad.setError(null);
-                                rad.setEnabled(false);
+
                                 if (!l_loc.isEmpty()) {
                                     loc.setError(null);
-                                    loc.setEnabled(false);
                                     SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                                     String uname=pref.getString("userId","");
                                     firebaseDatabase = FirebaseDatabase.getInstance();
-                                    reference = firebaseDatabase.getReference("user").child(uname).child("l_reminder");
+                                    reference = firebaseDatabase.getReference("user").child(uname).child("location_reminder");
                                     String fl_tittle = ltitle.getEditText().getText().toString();
                                     String fl_dd = dd.getEditText().getText().toString();
                                     String fl_task = task.getEditText().getText().toString();
@@ -121,13 +119,7 @@ public class reminderl extends AppCompatActivity {
 
                 }
             },year,month,day);
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(reminderl.this, new DatePickerDialog.OnDateSetListener() {
-//                @Override
-//                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                    editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
-//
-//                }
-//            }, year, month, day);
+
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 

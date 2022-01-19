@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -69,8 +71,10 @@ public class reminderti extends AppCompatActivity {
                                 ti.setError(null);
                                 ti.setEnabled(false);
 
-                                firebaseDatabase=FirebaseDatabase.getInstance();
-                                reference=firebaseDatabase.getReference("t_reminder");
+                                SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                                String uname=pref.getString("userId","");
+                                firebaseDatabase = FirebaseDatabase.getInstance();
+                                reference = firebaseDatabase.getReference("user").child(uname).child("time_reminder");
                                 String ft_tittle=ltitle.getEditText().getText().toString();
                                 String ft_dd=dd.getEditText().getText().toString();
                                 String ft_task=task.getEditText().getText().toString();
