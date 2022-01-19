@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GEO.NoActionBar">
         <activity
+            android:name=".reminderview"
+            android:exported="false" />
+        <activity
             android:name=".splash"
             android:exported="true">
             <intent-filter>
@@ -54,13 +57,15 @@
             android:exported="false" />
         <activity
             android:name=".log"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".MapsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAuVHHq2XMD-iXvIeujl0RdtrJdO8_qdKE"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAuVHHq2XMD-iXvIeujl0RdtrJdO8_qdKE" />
     </application>
 
 </manifest>

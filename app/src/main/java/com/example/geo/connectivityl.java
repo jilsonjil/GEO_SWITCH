@@ -81,7 +81,7 @@ public class connectivityl extends AppCompatActivity {
                             String fl_dd = dd.getEditText().getText().toString();
                             String fl_loc = loc.getEditText().getText().toString();
                             String fl_add = add.getEditText().getText().toString();
-                            locconnectivitystore locconnectivitystores=new locconnectivitystore(fl_tittle,fl_dd,fl_add,fl_loc);
+                            locconnectivitystore locconnectivitystores=new locconnectivitystore(fl_tittle,fl_dd,fl_add,location);
                             reference.child(fl_tittle).setValue(locconnectivitystores);
                             Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
