@@ -52,7 +52,7 @@ public class log extends AppCompatActivity {
                         final String passw=upassword.getEditText().getText().toString();
                         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
                         DatabaseReference databaseReference=firebaseDatabase.getReference("user");
-                        Query checkmail=databaseReference.orderByChild("username").equalTo(user_name);
+                        Query checkmail=databaseReference.orderByChild("profile/username").equalTo(user_name);
                         checkmail.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -77,7 +77,7 @@ public class mprofilel extends AppCompatActivity {
                             SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                             String uname=pref.getString("userId","");
                             firebaseDatabase = FirebaseDatabase.getInstance();
-                            reference = firebaseDatabase.getReference("user").child(uname).child("location_reminder");
+                            reference = firebaseDatabase.getReference("user").child(uname).child("location_mobileprofile");
                             String fl_tittle = ltittle.getEditText().getText().toString();
                             String fl_dd = dd.getEditText().getText().toString();
                             String fl_rb=rb.getText().toString();

@@ -33,7 +33,7 @@ public class reminderl extends AppCompatActivity {
 
     TextInputLayout ltitle, dd, task, rad, loc;
     EditText editText;
-    Button savebtn;
+    Button savebtn,view;
     int year, month, day;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -49,6 +49,7 @@ public class reminderl extends AppCompatActivity {
         rad = findViewById(R.id.radius);
         loc = findViewById(R.id.location);
         editText = findViewById(R.id.edate);
+        view=findViewById(R.id.showreminder);
         Calendar calendar = Calendar.getInstance();
         savebtn = findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +124,15 @@ public class reminderl extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
+        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),reminderview.class);
+                startActivity(intent);
+                finish();
+
+            }
         });
 
         loc.setEndIconOnClickListener(v -> {

@@ -82,7 +82,7 @@ public class register extends AppCompatActivity {
                                             String Suname_s=u_name.getEditText().getText().toString();
 
                                             storingdata storingdatas = new storingdata(Sfname_s, Smail_s, Sphone_s, Spass_s, Scpass_s,Suname_s);
-                                            reference.child(Suname_s).setValue(storingdatas).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            reference.child(Suname_s).child("profile").setValue(storingdatas).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Toast.makeText(getApplicationContext(), "Registartion successfully", Toast.LENGTH_SHORT).show();
