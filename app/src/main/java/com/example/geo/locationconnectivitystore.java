@@ -2,7 +2,7 @@ package com.example.geo;
 
 import java.util.List;
 
-public class locconnectivitystore {
+public class locationconnectivitystore {
     String Tittle;
     String Date;
 
@@ -11,10 +11,10 @@ public class locconnectivitystore {
     String Address;
     List<Double> Location;
 
-    public locconnectivitystore() {
+    public locationconnectivitystore() {
     }
 
-    public locconnectivitystore(String Tittle, String Date, String Address, List<Double> Location) {
+    public locationconnectivitystore(String Tittle, String Date, String Address, List<Double> Location) {
         this.Tittle = Tittle;
         this.Date = Date;
         this.Address = Address;

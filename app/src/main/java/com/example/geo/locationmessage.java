@@ -29,11 +29,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class messagel extends AppCompatActivity {
+public class locationmessage extends AppCompatActivity {
     EditText editText;
     TextInputLayout co_name,phn_no,dd,msg,loc;
     int year,month,day;
-    Button savebtn;
+    Button savebtn,view;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     List<Double> location;
@@ -49,6 +49,7 @@ public class messagel extends AppCompatActivity {
         loc=findViewById(R.id.rlocation);
         editText=findViewById(R.id.edate);
         Calendar calendar=Calendar.getInstance();
+        view=findViewById(R.id.showmsg);
         savebtn=findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +87,7 @@ public class messagel extends AppCompatActivity {
                                     String fl_pno=phn_no.getEditText().getText().toString();
                                     String fl_msg=msg.getEditText().getText().toString();
                                     String fl_loc=loc.getEditText().getText().toString();
-                                    locmessagestore locmessagestores = new locmessagestore(fl_cname,fl_pno,fl_dd,fl_msg,location);
+                                    locationmessagestore locmessagestores = new locationmessagestore(fl_cname,fl_pno,fl_dd,fl_msg,location);
                                     reference.child(fl_cname).setValue(locmessagestores);
                                     Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(getApplicationContext(),dashboard.class);
@@ -142,8 +143,16 @@ public class messagel extends AppCompatActivity {
             datePickerDialog.show();
 
         });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),locationmessageview.class);
+                startActivity(intent);
+
+            }
+        });
         loc.setEndIconOnClickListener(v -> {
-            Intent intent = new Intent(messagel.this, MapsActivity.class);
+            Intent intent = new Intent(locationmessage.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
     }

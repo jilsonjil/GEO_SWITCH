@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class reminderl extends AppCompatActivity {
+public class locationreminder extends AppCompatActivity {
 
     TextInputLayout ltitle, dd, task, rad, loc;
     EditText editText;
@@ -42,7 +42,7 @@ public class reminderl extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reminderl);
+        setContentView(R.layout.locreminder);
         ltitle = findViewById(R.id.tittle);
         dd = findViewById(R.id.date);
         task = findViewById(R.id.reminder);
@@ -84,7 +84,7 @@ public class reminderl extends AppCompatActivity {
                                     String fl_rad = rad.getEditText().getText().toString();
                                     String fl_loc = loc.getEditText().getText().toString();
 
-                                    locreminderstore locreminderstores = new locreminderstore(fl_tittle, fl_dd, fl_task, fl_rad, location);
+                                    locationreminderstore locreminderstores = new locationreminderstore(fl_tittle, fl_dd, fl_task, fl_rad, location);
                                     reference.child(fl_tittle).setValue(locreminderstores);
                                     Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
@@ -128,15 +128,15 @@ public class reminderl extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),reminderview.class);
+                Intent intent = new Intent(getApplicationContext(), locationreminderview.class);
                 startActivity(intent);
-                finish();
+
 
             }
         });
 
         loc.setEndIconOnClickListener(v -> {
-            Intent intent = new Intent(reminderl.this, MapsActivity.class);
+            Intent intent = new Intent(locationreminder.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
     }

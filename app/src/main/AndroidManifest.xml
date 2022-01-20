@@ -14,7 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GEO.NoActionBar">
         <activity
-            android:name=".reminderview"
+            android:name=".locationmessageview"
+            android:exported="false" />
+        <activity
+            android:name=".timemobileprofileview"
+            android:exported="false" />
+        <activity
+            android:name=".locationmobileprofileview"
+            android:exported="false" />
+        <activity
+            android:name=".locationreminderview"
             android:exported="false" />
         <activity
             android:name=".splash"
@@ -29,25 +38,25 @@
             android:name=".userprofile"
             android:exported="false" />
         <activity
-            android:name=".reminderti"
+            android:name=".timereminder"
             android:exported="false" />
         <activity
-            android:name=".messaget"
+            android:name=".timemessage"
             android:exported="false" />
         <activity
-            android:name=".mprofilet"
+            android:name=".timemobileprofile"
             android:exported="false" />
         <activity
-            android:name=".connectivityl"
+            android:name=".locationconnectivity"
             android:exported="false" />
         <activity
-            android:name=".mprofilel"
+            android:name=".locationmobileprofile"
             android:exported="false" />
         <activity
-            android:name=".messagel"
+            android:name=".locationmessage"
             android:exported="false" />
         <activity
-            android:name=".reminderl"
+            android:name=".locationreminder"
             android:exported="false" />
         <activity
             android:name=".dashboard"
@@ -56,7 +65,7 @@
             android:name=".register"
             android:exported="false" />
         <activity
-            android:name=".log"
+            android:name=".login"
             android:exported="true" />
         <activity android:name=".MapsActivity" />
 

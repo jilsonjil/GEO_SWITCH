@@ -17,8 +17,6 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.geo.R;
-import com.example.geo.reminderl;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class reminderti extends AppCompatActivity {
+public class timereminder extends AppCompatActivity {
     TextInputLayout ltitle,dd,task,ti;
     EditText editText1,editText2;
     Button savebtn;
@@ -128,7 +126,7 @@ public class reminderti extends AppCompatActivity {
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog=new TimePickerDialog(reminderti.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog=new TimePickerDialog(timereminder.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         hour=hourOfDay;

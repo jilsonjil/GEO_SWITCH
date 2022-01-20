@@ -1,6 +1,6 @@
 package com.example.geo;
 
-public class storingdata {
+public class registerstoringdata {
     String name;
     String email;
     String phone;
@@ -8,12 +8,12 @@ public class storingdata {
     String cpassword;
     String username;
 
-    public storingdata() {
+    public registerstoringdata() {
     }
 
 
 
-    public storingdata(String name, String email, String phone, String password, String cpassword, String username) {
+    public registerstoringdata(String name, String email, String phone, String password, String cpassword, String username) {
         this.name = name;
         this.email = email;
         this.phone = phone;

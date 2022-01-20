@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
@@ -31,11 +29,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class mprofilel extends AppCompatActivity {
+
+public class locationconnectivity extends AppCompatActivity {
+    TextInputLayout ltittle,dd,loc,add;
     EditText editText;
-    TextInputLayout ltittle,dd,lloc;
-    RadioGroup rg;
-    RadioButton rb;
     int year,month,day;
     Button savebtn;
     FirebaseDatabase firebaseDatabase;
@@ -45,64 +42,70 @@ public class mprofilel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mprofilel);
+        setContentView(R.layout.connectivityl);
         ltittle=findViewById(R.id.tittle);
         dd=findViewById(R.id.date);
-        lloc=findViewById(R.id.rlocation);
+        loc=findViewById(R.id.rlocation);
+        add=findViewById(R.id.address);
         editText=findViewById(R.id.edate);
-        rg=findViewById(R.id.rdg);
         Calendar calendar=Calendar.getInstance();
         savebtn=findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String l_tittle=ltittle.getEditText().getText().toString();
-                String l_dd=dd.getEditText().getText().toString();
-                String l_loc=lloc.getEditText().getText().toString();
-                int radio=rg.getCheckedRadioButtonId();
-                rb=findViewById(radio);
-                String l_rb=rb.getText().toString();
-                if (!l_tittle.isEmpty())
-                {
+                String l_tittle = ltittle.getEditText().getText().toString();
+                String l_dd = dd.getEditText().getText().toString();
+                String l_loc = loc.getEditText().getText().toString();
+                String l_add = add.getEditText().getText().toString();
+                if (!l_tittle.isEmpty()) {
                     ltittle.setError(null);
                     ltittle.setEnabled(false);
-                    if (!l_dd.isEmpty())
+                    if(!l_dd.isEmpty())
                     {
-                        dd.setError(null);
-                       dd.setEnabled(false);
-                        if (!l_loc.isEmpty())
+                    dd.setError(null);
+                    dd.setErrorEnabled(false);
+                    if(!l_add.isEmpty())
+                    {
+                        add.setError(null);
+                        add.setEnabled(false);
+                        if(!l_loc.isEmpty())
+
                         {
-                            lloc.setError(null);
-                            lloc.setEnabled(false);
+                            loc.setError(null);
+                            loc.setEnabled(false);
                             SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                             String uname=pref.getString("userId","");
                             firebaseDatabase = FirebaseDatabase.getInstance();
-                            reference = firebaseDatabase.getReference("user").child(uname).child("location_mobileprofile");
+                            reference = firebaseDatabase.getReference("user").child(uname).child("location_connectivity");
                             String fl_tittle = ltittle.getEditText().getText().toString();
                             String fl_dd = dd.getEditText().getText().toString();
-                            String fl_rb=rb.getText().toString();
-
-                            locmprofilestore locmprofiles = new locmprofilestore(fl_tittle,fl_rb,fl_dd,location);
-                            reference.child(fl_tittle).setValue(locmprofiles);
-                            Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
-
+                            String fl_loc = loc.getEditText().getText().toString();
+                            String fl_add = add.getEditText().getText().toString();
+                            locationconnectivitystore locconnectivitystores=new locationconnectivitystore(fl_tittle,fl_dd,fl_add,location);
+                            reference.child(fl_tittle).setValue(locconnectivitystores);
+                            Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
                             startActivity(intent);
                             finish();
+
                         }
                         else
                         {
-                            lloc.setError("Select Location");
+                            loc.setError("Select location");
                         }
+                     }
+                    else{
+                        add.setError("Enter address");
+                    }
                     }
                     else
                     {
-                      dd.setError("select date");
+                        dd.setError("Select date");
                     }
                 }
-                else
-                {
-                    ltittle.setError("Enter Tittle");
+                else {
+                    ltittle.setError("Enter tittle");
+
                 }
             }
         });
@@ -117,12 +120,19 @@ public class mprofilel extends AppCompatActivity {
 
                 }
             },year,month,day);
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(reminderl.this, new DatePickerDialog.OnDateSetListener() {
+//                @Override
+//                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                    editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+//
+//                }
+//            }, year, month, day);
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
         });
-        lloc.setEndIconOnClickListener(v -> {
-            Intent intent = new Intent(mprofilel.this, MapsActivity.class);
+        loc.setEndIconOnClickListener(v -> {
+            Intent intent = new Intent(locationconnectivity.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
     }
@@ -146,7 +156,7 @@ public class mprofilel extends AppCompatActivity {
                     List<Address> addresses = geocoder.getFromLocation(lat,lon,1);
                     if (!addresses.isEmpty()) {
                         if (addresses.get(0).getMaxAddressLineIndex() > 0) {
-                            lloc.getEditText().setText(
+                            loc.getEditText().setText(
                                     addresses.get(0).getAddressLine(0)
                             );
                             return;
@@ -156,8 +166,7 @@ public class mprofilel extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            lloc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
+            loc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
         }
     }
-
 }

@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class log extends AppCompatActivity {
+public class login extends AppCompatActivity {
     Button signupbtn,loginbtn,forgot;
     TextInputLayout username,upassword;
     TextInputLayout a;

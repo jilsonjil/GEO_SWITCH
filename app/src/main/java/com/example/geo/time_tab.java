@@ -27,17 +27,17 @@ public class time_tab extends Fragment implements View.OnClickListener {
         Intent i;
         switch (v.getId()) {
             case R.id.cardtreminder:
-                i = new Intent(requireContext(),reminderti.class);
+                i = new Intent(requireContext(), timereminder.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;
             case R.id.cardtmessage:
-                i = new Intent(requireContext(), messaget.class);
+                i = new Intent(requireContext(), timemessage.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;
             case R.id.cardtmprofile:
-                i = new Intent(requireContext(), mprofilet.class);
+                i = new Intent(requireContext(), timemobileprofile.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;

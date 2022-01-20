@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class locadapter extends FragmentPagerAdapter {
+public class locationadapter extends FragmentPagerAdapter {
     private  Context context;
     int totalTabs;
 
@@ -15,7 +15,7 @@ public class locadapter extends FragmentPagerAdapter {
         return totalTabs;
     }
 
-    public locadapter(FragmentManager fm, Context context, int totalTabs)
+    public locationadapter(FragmentManager fm, Context context, int totalTabs)
     {
         super(fm);
         this.context=context;

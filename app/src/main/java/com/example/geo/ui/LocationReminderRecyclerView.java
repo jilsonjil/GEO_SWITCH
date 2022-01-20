@@ -9,22 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.geo.R;
-import com.example.geo.locreminderstore;
-
-import org.w3c.dom.Text;
+import com.example.geo.locationreminderstore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    List<locreminderstore> locreminderList = new ArrayList<>();
+public class LocationReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    List<locationreminderstore> locreminderList = new ArrayList<>();
     OnclickListener listener;
-    public ReminderRecyclerView(OnclickListener listener) {
+    public LocationReminderRecyclerView(OnclickListener listener) {
         this.listener = listener;
     }
 
     public interface OnclickListener {
-        public void Onclick(locreminderstore data);
+        public void Onclick(locationreminderstore data);
     }
 
 
@@ -33,14 +31,14 @@ public class ReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locreminderviewlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationreminderviewlist,parent,false);
         return new ReminderViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        locreminderstore data = locreminderList.get(position);
+        locationreminderstore data = locreminderList.get(position);
        TextView info = holder.itemView.findViewById(R.id.info);
        info.setText(data.getTittle());
        holder.itemView.setOnClickListener(v -> {
@@ -53,7 +51,7 @@ public class ReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.View
         return locreminderList.size();
     }
 
-    public void add(List<locreminderstore> locreminderList) {
+    public void add(List<locationreminderstore> locreminderList) {
         this.locreminderList.clear();
         this.locreminderList.addAll(locreminderList);
         notifyDataSetChanged();

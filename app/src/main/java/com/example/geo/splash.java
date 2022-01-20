@@ -1,7 +1,6 @@
 package com.example.geo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.Animatable;
 
 import android.content.Context;
 import android.content.Intent;
@@ -38,7 +37,7 @@ public class splash extends AppCompatActivity {
                 SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                 String uname=pref.getString("userId","");
                 if (uname.isEmpty()) {
-                    Intent intent=new Intent(splash.this,log.class);
+                    Intent intent=new Intent(splash.this, login.class);
                     startActivity(intent);
                     finish();
                 } else {

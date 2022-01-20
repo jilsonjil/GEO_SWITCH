@@ -2,7 +2,7 @@ package com.example.geo;
 
 import java.util.List;
 
-public class locmprofilestore {
+public class locationmobileprofilestore {
     String Tittle;
 
 
@@ -10,11 +10,11 @@ public class locmprofilestore {
     String Date;
     String Profile;
 
-    public locmprofilestore() {
+    public locationmobileprofilestore() {
     }
 
 
-    public locmprofilestore(String Tittle, String Date, String Profile, List<Double> Location) {
+    public locationmobileprofilestore(String Tittle, String Date, String Profile, List<Double> Location) {
         this.Tittle = Tittle;
         this.Date = Date;
         this.Profile = Profile;

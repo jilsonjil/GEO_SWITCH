@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -37,22 +35,22 @@ public class location_tab extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.cardreminder:
-                i=new Intent(requireContext(),reminderl.class);
+                i=new Intent(requireContext(), locationreminder.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;
             case R.id.cardmessage:
-                i=new Intent(requireContext(),messagel.class);
+                i=new Intent(requireContext(), locationmessage.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;
             case R.id.cardmprofile:
-                i=new Intent(requireContext(),mprofilel.class);
+                i=new Intent(requireContext(), locationmobileprofile.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;
             case R.id.cardconnect:
-                i=new Intent(requireContext(),connectivityl.class);
+                i=new Intent(requireContext(), locationconnectivity.class);
                 requireContext().startActivity(i);
                 requireActivity().finish();
                 break;

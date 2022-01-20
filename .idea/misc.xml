@@ -19,6 +19,12 @@
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/fragment_locationtime.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/loc.xml" value="0.2714440825190011" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/location_tab.xml" value="0.19844357976653695" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locationmessageview.xml" value="0.1484375" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locationmessageviewlist.xml" value="0.1484375" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locationmobileprofileview.xml" value="0.1625" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locationreminderviewlist.xml" value="0.1947463768115942" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locmobileprofileactivity.xml" value="0.1625" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locreminderview.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locreminderviewlist.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/log.xml" value="0.2" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/messagel.xml" value="0.24048913043478262" />
@@ -37,6 +43,8 @@
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/splash.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/splashscreen.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/time_tab.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/timemobileprofileview.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/timemobileprofileviewlist.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/userprofile.xml" value="0.4" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/menu/details_menu.xml" value="0.12135416666666667" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/menu/nav_menu.xml" value="0.2140625" />

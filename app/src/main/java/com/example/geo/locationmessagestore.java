@@ -1,20 +1,20 @@
 package com.example.geo;
 import java.util.List;
 
-public class locmessagestore {
+public class locationmessagestore {
     String Contact_name;
     String Phone_number;
     String Date;
     String Message;
     List<Double> Location;
 
-    public locmessagestore() {
+    public locationmessagestore() {
     }
 
 
 
 
-    public locmessagestore(String Contact_name, String Phone_number, String Date, String Message, List<Double> Location) {
+    public locationmessagestore(String Contact_name, String Phone_number, String Date, String Message, List<Double> Location) {
         this.Contact_name = Contact_name;
         this.Phone_number = Phone_number;
         this.Date = Date;

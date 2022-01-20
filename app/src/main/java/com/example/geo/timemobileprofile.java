@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -15,20 +17,25 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class mprofilet extends AppCompatActivity {
+public class timemobileprofile extends AppCompatActivity {
     EditText editText,editText2;
     TextInputLayout ttittle,dd,ttime;
     RadioGroup rg;
     RadioButton rb;
     int year,month,day,hour,min;
-    Button savebtn;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
+    Button savebtn,view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,35 +44,49 @@ public class mprofilet extends AppCompatActivity {
         dd=findViewById(R.id.date);
         rg=findViewById(R.id.rdg);
         ttime=findViewById(R.id.t_time);
-        editText=findViewById(R.id.rtime);
+        editText=findViewById(R.id.edate);
+        editText2=findViewById(R.id.rtime);
+        view=findViewById(R.id.showmprofile);
+        savebtn=findViewById(R.id.rlsave);
         Calendar calendar=Calendar.getInstance();
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String l_tittle=ttittle.getEditText().getText().toString();
-                String l_dd=dd.getEditText().getText().toString();
-                String l_loc=ttime.getEditText().getText().toString();
+                String t_tittle=ttittle.getEditText().getText().toString();
+                String t_dd=dd.getEditText().getText().toString();
+                String t_time=ttime.getEditText().getText().toString();
                 int radio=rg.getCheckedRadioButtonId();
                 rb=findViewById(radio);
-                if (!l_tittle.isEmpty())
+                if (!t_tittle.isEmpty())
                 {
                     ttittle.setError(null);
                     ttittle.setEnabled(false);
-                    if (!l_dd.isEmpty())
+                    if (!t_dd.isEmpty())
                     {
                         dd.setError(null);
-                        dd.setEnabled(false);
-                        if (!l_loc.isEmpty())
+
+                        if (!t_time.isEmpty())
                         {
                             ttime.setError(null);
-                            ttime.setEnabled(false);
+                            SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                            String uname=pref.getString("userId","");
+                            firebaseDatabase = FirebaseDatabase.getInstance();
+                            reference = firebaseDatabase.getReference("user").child(uname).child("time_mobileprofile");
+                            String fl_tittle = ttittle.getEditText().getText().toString();
+                            String fl_dd = dd.getEditText().getText().toString();
+                            String fl_rb=rb.getText().toString();
+                            String ft_time=ttime.getEditText().getText().toString();
+                            timemobileprofilestore timemobileprofilestores=new timemobileprofilestore(fl_tittle,fl_dd,fl_rb,ft_time);
+                            reference.child(fl_tittle).setValue(timemobileprofilestores);
+                            Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
+
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
                             startActivity(intent);
-                            finish();
+
                         }
                         else
                         {
-                            ttime.setError("Select Location");
+                            ttime.setError("Select Time");
                         }
                     }
                     else
@@ -94,10 +115,19 @@ public class mprofilet extends AppCompatActivity {
             datePickerDialog.show();
 
         });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),timemobileprofileview.class);
+                startActivity(intent);
+
+
+            }
+        });
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog=new TimePickerDialog(mprofilet.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog=new TimePickerDialog(timemobileprofile.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         hour=hourOfDay;

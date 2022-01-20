@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,17 +43,17 @@ public class userprofile extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
         String userId = pref.getString("userId","");
         final  FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference reference=firebaseDatabase.getReference("user").child(userId);
+        DatabaseReference reference=firebaseDatabase.getReference("user").child(userId).child("profile");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                storingdata storingdata=datasnapshot.getValue(com.example.geo.storingdata.class);
-               f_name.setText(storingdata.name);
-                u_name.setText(storingdata.username);
-                tname.setText(storingdata.name);
-                tuname.setText(storingdata.username);
-                tmail.setText(storingdata.email);
-                tphone.setText(storingdata.phone);
+                registerstoringdata registerstoringdata =datasnapshot.getValue(registerstoringdata.class);
+               f_name.setText(registerstoringdata.name);
+                u_name.setText(registerstoringdata.username);
+                tname.setText(registerstoringdata.name);
+                tuname.setText(registerstoringdata.username);
+                tmail.setText(registerstoringdata.email);
+                tphone.setText(registerstoringdata.phone);
 
 
 

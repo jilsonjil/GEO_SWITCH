@@ -2,18 +2,18 @@ package com.example.geo;
 
 import java.util.List;
 
-public class locreminderstore {
+public class locationreminderstore {
     String Tittle;
     String Date;
     String Reminder;
     String Radius;
     List<Double> Location;
-    public locreminderstore() {
+    public locationreminderstore() {
     }
 
 
 
-    public locreminderstore(String Tittle, String Date, String Reminder, String Radius, List<Double> Location) {
+    public locationreminderstore(String Tittle, String Date, String Reminder, String Radius, List<Double> Location) {
         this.Tittle = Tittle;
         this.Date = Date;
         this.Reminder = Reminder;

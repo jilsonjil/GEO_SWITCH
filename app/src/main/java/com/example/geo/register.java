@@ -37,7 +37,7 @@ public class register extends AppCompatActivity {
     }
 
     public void loginbtn(View view) {
-        Intent intent=new Intent(getApplicationContext(),log.class);
+        Intent intent=new Intent(getApplicationContext(), login.class);
         startActivity(intent);
         finish();
     }
@@ -81,14 +81,14 @@ public class register extends AppCompatActivity {
                                             String Scpass_s = cpass.getEditText().getText().toString();
                                             String Suname_s=u_name.getEditText().getText().toString();
 
-                                            storingdata storingdatas = new storingdata(Sfname_s, Smail_s, Sphone_s, Spass_s, Scpass_s,Suname_s);
+                                            registerstoringdata storingdatas = new registerstoringdata(Sfname_s, Smail_s, Sphone_s, Spass_s, Scpass_s,Suname_s);
                                             reference.child(Suname_s).child("profile").setValue(storingdatas).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Toast.makeText(getApplicationContext(), "Registartion successfully", Toast.LENGTH_SHORT).show();
                                                     SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                                                     pref.edit().putString("userId",Suname_s).apply();
-                                                    Intent intent = new Intent(getApplicationContext(), log.class);
+                                                    Intent intent = new Intent(getApplicationContext(), login.class);
                                                     startActivity(intent);
                                                     finish();
                                                 }

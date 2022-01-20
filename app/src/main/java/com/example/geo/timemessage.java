@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class messaget extends AppCompatActivity {
+public class timemessage extends AppCompatActivity {
     EditText editText,editText2;
     TextInputLayout co_name,phn_no,dd,msg,tim;
     int year,month,day,hour,min;
@@ -135,7 +135,7 @@ public class messaget extends AppCompatActivity {
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog=new TimePickerDialog(messaget.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog=new TimePickerDialog(timemessage.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         hour=hourOfDay;
