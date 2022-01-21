@@ -34,7 +34,7 @@ public class locationconnectivity extends AppCompatActivity {
     TextInputLayout ltittle,dd,loc,add;
     EditText editText;
     int year,month,day;
-    Button savebtn;
+    Button savebtn,view;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     List<Double> location;
@@ -45,10 +45,11 @@ public class locationconnectivity extends AppCompatActivity {
         setContentView(R.layout.connectivityl);
         ltittle=findViewById(R.id.tittle);
         dd=findViewById(R.id.date);
-        loc=findViewById(R.id.rlocation);
+        loc=findViewById(R.id.location);
         add=findViewById(R.id.address);
         editText=findViewById(R.id.edate);
         Calendar calendar=Calendar.getInstance();
+        view=findViewById(R.id.showconnect);
         savebtn=findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +87,7 @@ public class locationconnectivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
                             startActivity(intent);
-                            finish();
+
 
                         }
                         else
@@ -109,6 +110,7 @@ public class locationconnectivity extends AppCompatActivity {
                 }
             }
         });
+
         editText.setOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
@@ -130,6 +132,15 @@ public class locationconnectivity extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
+        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),locationconnectivityview.class);
+                startActivity(intent);
+
+
+            }
         });
         loc.setEndIconOnClickListener(v -> {
             Intent intent = new Intent(locationconnectivity.this, MapsActivity.class);

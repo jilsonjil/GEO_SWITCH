@@ -28,7 +28,7 @@ import java.util.Calendar;
 public class timereminder extends AppCompatActivity {
     TextInputLayout ltitle,dd,task,ti;
     EditText editText1,editText2;
-    Button savebtn;
+    Button savebtn,view;
     int year,month,day,hour,min;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -43,6 +43,7 @@ public class timereminder extends AppCompatActivity {
         ti=findViewById(R.id.ti_time);
         editText1=findViewById(R.id.edate);
         editText2=findViewById(R.id.rtime);
+        view=findViewById(R.id.showreminder);
         Calendar calendar=Calendar.getInstance();
         savebtn=findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +123,14 @@ public class timereminder extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
+        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),timereminderview.class);
+                startActivity(intent);
+
+            }
         });
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override
