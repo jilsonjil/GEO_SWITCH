@@ -39,7 +39,7 @@ public class register extends AppCompatActivity {
     public void loginbtn(View view) {
         Intent intent=new Intent(getApplicationContext(), login.class);
         startActivity(intent);
-        finish();
+
     }
 
     public void registerbtn(View view) {
@@ -90,7 +90,7 @@ public class register extends AppCompatActivity {
                                                     pref.edit().putString("userId",Suname_s).apply();
                                                     Intent intent = new Intent(getApplicationContext(), login.class);
                                                     startActivity(intent);
-                                                    finish();
+
                                                 }
                                             });
 

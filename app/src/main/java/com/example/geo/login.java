@@ -46,7 +46,7 @@ public class login extends AppCompatActivity {
                     if(!pass_word.isEmpty())
                     {
                         upassword.setError(null);
-                        upassword.setEnabled(false);
+
                         final String user_name=username.getEditText().getText().toString();
 
                         final String passw=upassword.getEditText().getText().toString();

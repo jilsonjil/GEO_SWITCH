@@ -1,16 +1,16 @@
 package com.example.geo;
 
-public class timessagestore {
+public class timemessagestore {
     String Contact_name;
     String Phone_number;
     String Date;
     String Message;
     String Time;
 
-    public timessagestore() {
+    public timemessagestore() {
     }
 
-    public timessagestore(String contact_name, String phone_number, String date, String message, String time) {
+    public timemessagestore(String contact_name, String phone_number, String date, String message, String time) {
         Contact_name = contact_name;
         Phone_number = phone_number;
         Date = date;

@@ -60,7 +60,7 @@ public class timemobileprofile extends AppCompatActivity {
                 if (!t_tittle.isEmpty())
                 {
                     ttittle.setError(null);
-                    ttittle.setEnabled(false);
+
                     if (!t_dd.isEmpty())
                     {
                         dd.setError(null);

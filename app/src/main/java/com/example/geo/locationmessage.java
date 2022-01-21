@@ -61,19 +61,19 @@ public class locationmessage extends AppCompatActivity {
                 String l_loc=loc.getEditText().getText().toString();
                 if(!l_cname.isEmpty()) {
                     co_name.setError(null);
-                    co_name.setEnabled(false);
+
                     if(!l_dd.isEmpty())
                     {
                         dd.setError(null);
-                        dd.setEnabled(false);
+
                         if(!l_pno.isEmpty())
                         {
                             phn_no.setError(null);
-                            phn_no.setEnabled(false);
+
                             if(!l_msg.isEmpty())
                             {
                                 msg.setError(null);
-                                msg.setEnabled(false);
+
                                 if(!l_loc.isEmpty())
                                 {
                                     loc.setError(null);
@@ -92,7 +92,7 @@ public class locationmessage extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                     startActivity(intent);
-                                    finish();
+
                                 }
                                 else
                                 {

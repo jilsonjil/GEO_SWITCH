@@ -31,7 +31,7 @@ public class timemessage extends AppCompatActivity {
     int year,month,day,hour,min;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
-    Button savebtn;
+    Button savebtn,view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class timemessage extends AppCompatActivity {
         editText2=findViewById(R.id.ttime);
         Calendar calendar=Calendar.getInstance();
         savebtn=findViewById(R.id.rlsave);
+        view=findViewById(R.id.showmsg);
       savebtn.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -56,23 +57,23 @@ public class timemessage extends AppCompatActivity {
               String t_time=tim.getEditText().getText().toString();
               if(!t_cname.isEmpty()) {
                   co_name.setError(null);
-                  co_name.setEnabled(false);
+
                   if(!t_dd.isEmpty())
                   {
                       dd.setError(null);
-                      dd.setEnabled(false);
+
                       if(!t_pno.isEmpty())
                       {
                           phn_no.setError(null);
-                          phn_no.setEnabled(false);
+
                           if(!t_msg.isEmpty())
                           {
                               msg.setError(null);
-                              msg.setEnabled(false);
+
                               if(!t_time.isEmpty())
                               {
                                   tim.setError(null);
-                                  tim.setEnabled(false);
+
                                   SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                                   String uname=pref.getString("userId","");
                                   firebaseDatabase = FirebaseDatabase.getInstance();
@@ -82,13 +83,13 @@ public class timemessage extends AppCompatActivity {
                                   String ft_pno=phn_no.getEditText().getText().toString();
                                   String ft_msg=msg.getEditText().getText().toString();
                                   String ft_time=tim.getEditText().getText().toString();
-                                  timessagestore timessagestores=new timessagestore(ft_cname,ft_pno,ft_dd,ft_msg,ft_time);
+                                  timemessagestore timessagestores=new timemessagestore(ft_cname,ft_pno,ft_dd,ft_msg,ft_time);
                                   reference.child(ft_cname).setValue(timessagestores);
                                   Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
 
                                   Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                   startActivity(intent);
-                                  finish();
+
                               }
                               else
                               {
@@ -131,6 +132,14 @@ public class timemessage extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
+        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),timemessageview.class);
+                startActivity(intent);
+
+            }
         });
         editText2.setOnClickListener(new View.OnClickListener() {
             @Override

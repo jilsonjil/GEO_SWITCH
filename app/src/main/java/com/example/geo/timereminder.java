@@ -55,20 +55,20 @@ public class timereminder extends AppCompatActivity {
                 String t_ti=ti.getEditText().getText().toString();
                 if(!t_tittle.isEmpty()) {
                     ltitle.setError(null);
-                    ltitle.setEnabled(false);
+
                     if(!t_dd.isEmpty())
                     {
                         dd.setError(null);
-                        dd.setEnabled(false);
+
                         if(!t_task.isEmpty())
                         {
                             task.setError(null);
-                            task.setEnabled(false);
+
 
                             if(!t_ti.isEmpty())
                             {
                                 ti.setError(null);
-                                ti.setEnabled(false);
+
 
                                 SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                                 String uname=pref.getString("userId","");
@@ -84,7 +84,7 @@ public class timereminder extends AppCompatActivity {
 
                                 Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                 startActivity(intent);
-                                finish();
+
                             }
                             else
                             {

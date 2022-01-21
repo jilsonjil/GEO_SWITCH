@@ -66,15 +66,15 @@ public class locationmobileprofile extends AppCompatActivity {
                 if (!l_tittle.isEmpty())
                 {
                     ltittle.setError(null);
-                    ltittle.setEnabled(false);
+
                     if (!l_dd.isEmpty())
                     {
                         dd.setError(null);
-                       dd.setEnabled(false);
+
                         if (!l_loc.isEmpty())
                         {
                             lloc.setError(null);
-                            lloc.setEnabled(false);
+
                             SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                             String uname=pref.getString("userId","");
                             firebaseDatabase = FirebaseDatabase.getInstance();

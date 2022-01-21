@@ -60,20 +60,20 @@ public class locationconnectivity extends AppCompatActivity {
                 String l_add = add.getEditText().getText().toString();
                 if (!l_tittle.isEmpty()) {
                     ltittle.setError(null);
-                    ltittle.setEnabled(false);
+
                     if(!l_dd.isEmpty())
                     {
                     dd.setError(null);
-                    dd.setErrorEnabled(false);
+
                     if(!l_add.isEmpty())
                     {
                         add.setError(null);
-                        add.setEnabled(false);
+
                         if(!l_loc.isEmpty())
 
                         {
                             loc.setError(null);
-                            loc.setEnabled(false);
+
                             SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
                             String uname=pref.getString("userId","");
                             firebaseDatabase = FirebaseDatabase.getInstance();

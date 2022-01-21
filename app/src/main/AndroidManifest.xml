@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GEO.NoActionBar">
         <activity
+            android:name=".timemessageview"
+            android:exported="false" />
+        <activity
             android:name=".timereminderview"
             android:exported="false" />
         <activity

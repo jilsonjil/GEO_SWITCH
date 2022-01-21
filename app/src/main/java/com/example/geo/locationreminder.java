@@ -91,7 +91,7 @@ public class locationreminder extends AppCompatActivity {
 
                                     Intent intent = new Intent(getApplicationContext(), dashboard.class);
                                     startActivity(intent);
-                                    finish();
+
                                 } else {
                                     loc.setError("select location");
                                 }

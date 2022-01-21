@@ -34,7 +34,7 @@ public class dashboard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),userprofile.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
