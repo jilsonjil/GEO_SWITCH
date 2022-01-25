@@ -81,14 +81,13 @@ public class timereminder extends AppCompatActivity {
                                 timereminderstore timereminderstores=new timereminderstore(ft_tittle,ft_dd,ft_task,ft_ti);
                                 reference.child(ft_tittle).setValue(timereminderstores);
                                 Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
-
                                 Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                 startActivity(intent);
 
                             }
                             else
                             {
-                                ti.setError("select location");
+                                ti.setError("select time");
                             }
                         }
 
@@ -109,7 +108,7 @@ public class timereminder extends AppCompatActivity {
                 }
             }
         });
-        editText1.setOnClickListener(v -> {
+        dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -132,7 +131,7 @@ public class timereminder extends AppCompatActivity {
 
             }
         });
-        editText2.setOnClickListener(new View.OnClickListener() {
+        ti.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog=new TimePickerDialog(timereminder.this, new TimePickerDialog.OnTimeSetListener() {

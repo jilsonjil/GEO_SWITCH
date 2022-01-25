@@ -63,6 +63,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendar_549"
             android:hint="Date">
 
 

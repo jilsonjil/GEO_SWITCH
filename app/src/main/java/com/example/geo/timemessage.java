@@ -118,7 +118,7 @@ public class timemessage extends AppCompatActivity {
 
           }
       });
-        editText.setOnClickListener(v -> {
+        dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -141,7 +141,7 @@ public class timemessage extends AppCompatActivity {
 
             }
         });
-        editText2.setOnClickListener(new View.OnClickListener() {
+        tim.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog=new TimePickerDialog(timemessage.this, new TimePickerDialog.OnTimeSetListener() {

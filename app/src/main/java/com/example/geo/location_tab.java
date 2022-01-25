@@ -37,22 +37,22 @@ public class location_tab extends Fragment implements View.OnClickListener {
             case R.id.cardreminder:
                 i=new Intent(requireContext(), locationreminder.class);
                 requireContext().startActivity(i);
-                requireActivity().finish();
+                requireActivity();
                 break;
             case R.id.cardmessage:
                 i=new Intent(requireContext(), locationmessage.class);
                 requireContext().startActivity(i);
-                requireActivity().finish();
+                requireActivity();
                 break;
             case R.id.cardmprofile:
                 i=new Intent(requireContext(), locationmobileprofile.class);
                 requireContext().startActivity(i);
-                requireActivity().finish();
+                requireActivity();
                 break;
             case R.id.cardconnect:
                 i=new Intent(requireContext(), locationconnectivity.class);
                 requireContext().startActivity(i);
-                requireActivity().finish();
+                requireActivity();
                 break;
         }
 

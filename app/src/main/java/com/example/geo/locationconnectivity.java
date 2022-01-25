@@ -111,7 +111,7 @@ public class locationconnectivity extends AppCompatActivity {
             }
         });
 
-        editText.setOnClickListener(v -> {
+        dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);

@@ -63,6 +63,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendar_549"
             android:hint="Date">
 
 
@@ -97,6 +99,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_delivery_time_4443"
             android:id="@+id/time">
 
 

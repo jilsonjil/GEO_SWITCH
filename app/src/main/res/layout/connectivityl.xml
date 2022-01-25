@@ -49,7 +49,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/date"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Date">
+            android:hint="Date"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendar_549">
 
 
             <com.google.android.material.textfield.TextInputEditText
