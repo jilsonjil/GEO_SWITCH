@@ -29,6 +29,7 @@ public class timereminder extends AppCompatActivity {
     TextInputLayout ltitle,dd,task,ti;
     EditText editText1,editText2;
     Button savebtn,view;
+    long reminderId;
     int year,month,day,hour,min;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -39,6 +40,7 @@ public class timereminder extends AppCompatActivity {
         setContentView(R.layout.reminderti);
         ltitle=findViewById(R.id.ti_tittle);
         dd=findViewById(R.id.ti_date);
+        reminderId=System.currentTimeMillis();
         task=findViewById(R.id.ti_reminder);
         ti=findViewById(R.id.ti_time);
         editText1=findViewById(R.id.edate);
@@ -79,7 +81,8 @@ public class timereminder extends AppCompatActivity {
                                 String ft_task=task.getEditText().getText().toString();
                                 String ft_ti=ti.getEditText().getText().toString();
                                 timereminderstore timereminderstores=new timereminderstore(ft_tittle,ft_dd,ft_task,ft_ti);
-                                reference.child(ft_tittle).setValue(timereminderstores);
+                                timereminderstores.setId(reminderId);
+                                reference.child(String.valueOf(reminderId)).setValue(timereminderstores);
                                 Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                                 Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                 startActivity(intent);
@@ -131,6 +134,16 @@ public class timereminder extends AppCompatActivity {
 
             }
         });
+        timereminderstore data=(timereminderstore) getIntent().getSerializableExtra("data");
+        if(data!=null)
+        {
+            ltitle.getEditText().setText(data.getTittle());
+            task.getEditText().setText(data.getReminder());
+            ti.getEditText().setText(data.getTime());
+            dd.getEditText().setText(data.getDate());
+            reminderId = data.getId();
+
+        }
         ti.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

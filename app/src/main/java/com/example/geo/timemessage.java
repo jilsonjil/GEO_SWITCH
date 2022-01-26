@@ -28,6 +28,7 @@ import java.util.Calendar;
 public class timemessage extends AppCompatActivity {
     EditText editText,editText2;
     TextInputLayout co_name,phn_no,dd,msg,tim;
+    long messageId;
     int year,month,day,hour,min;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -39,6 +40,7 @@ public class timemessage extends AppCompatActivity {
         setContentView(R.layout.messaget);
         co_name=findViewById(R.id.cname);
         dd=findViewById(R.id.date);
+        messageId=System.currentTimeMillis();
         phn_no=findViewById(R.id.pno);
         msg=findViewById(R.id.message);
         tim=findViewById(R.id.time);
@@ -84,7 +86,8 @@ public class timemessage extends AppCompatActivity {
                                   String ft_msg=msg.getEditText().getText().toString();
                                   String ft_time=tim.getEditText().getText().toString();
                                   timemessagestore timessagestores=new timemessagestore(ft_cname,ft_pno,ft_dd,ft_msg,ft_time);
-                                  reference.child(ft_cname).setValue(timessagestores);
+                                  timessagestores.setId(messageId);
+                                  reference.child(String.valueOf(messageId)).setValue(timessagestores);
                                   Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
 
                                   Intent intent=new Intent(getApplicationContext(),dashboard.class);
@@ -133,6 +136,16 @@ public class timemessage extends AppCompatActivity {
             datePickerDialog.show();
 
         });
+        timemessagestore data=(timemessagestore) getIntent().getSerializableExtra("data");
+        if(data !=null)
+        {
+           tim.getEditText().setText(data.getTime());
+            dd.getEditText().setText(data.getDate());
+            msg.getEditText().setText(data.getMessage());
+            phn_no.getEditText().setText(data.getPhone_number());
+            co_name.getEditText().setText(data.getContact_name());
+
+            }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

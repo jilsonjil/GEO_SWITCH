@@ -33,6 +33,7 @@ public class locationmessage extends AppCompatActivity {
     EditText editText;
     TextInputLayout co_name,phn_no,dd,msg,loc;
     int year,month,day;
+    long messageId;
     Button savebtn,view;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -45,6 +46,7 @@ public class locationmessage extends AppCompatActivity {
         co_name=findViewById(R.id.cname);
         dd=findViewById(R.id.date);
         phn_no=findViewById(R.id.pno);
+        messageId=System.currentTimeMillis();
         msg=findViewById(R.id.message);
         loc=findViewById(R.id.rlocation);
         editText=findViewById(R.id.edate);
@@ -88,7 +90,9 @@ public class locationmessage extends AppCompatActivity {
                                     String fl_msg=msg.getEditText().getText().toString();
                                     String fl_loc=loc.getEditText().getText().toString();
                                     locationmessagestore locmessagestores = new locationmessagestore(fl_cname,fl_pno,fl_dd,fl_msg,location);
-                                    reference.child(fl_cname).setValue(locmessagestores);
+                                    locmessagestores.setId(messageId);
+                                    reference.child(String.valueOf(messageId)).setValue(locmessagestores);
+
                                     Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                     startActivity(intent);
@@ -155,7 +159,20 @@ public class locationmessage extends AppCompatActivity {
             Intent intent = new Intent(locationmessage.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
+        locationmessagestore data=(locationmessagestore) getIntent().getSerializableExtra("data");
+        if(data !=null)
+        {
+            location = data.getLocation();
+            dd.getEditText().setText(data.getDate());
+            msg.getEditText().setText(data.getMessage());
+            phn_no.getEditText().setText(data.getPhone_number());
+            co_name.getEditText().setText(data.getContact_name());
+            if (location != null && !location.isEmpty()) {
+                setLocationTitle(location.get(1), location.get(0));
+            }
+        }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -169,6 +186,11 @@ public class locationmessage extends AppCompatActivity {
             listLoc.add(lon);
             listLoc.add(lat);
             location = listLoc;
+            setLocationTitle(lat, lon);
+        }
+    }
+    private void setLocationTitle(Double lat, Double lon) {
+        String title = String.valueOf(lon) + "," + String.valueOf(lat);
 
             if (Geocoder.isPresent()) {
                 Geocoder geocoder = new Geocoder(this);
@@ -186,7 +208,7 @@ public class locationmessage extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            loc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
-        }
+            loc.getEditText().setText(title);
+
     }
 }

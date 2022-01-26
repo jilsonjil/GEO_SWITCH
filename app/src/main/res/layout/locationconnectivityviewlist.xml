@@ -7,27 +7,35 @@
 
 
     <androidx.cardview.widget.CardView
-        app:cardElevation="6dp"
-        app:cardCornerRadius="20dp"
+        android:layout_width="400dp"
+        android:layout_height="122dp"
         android:layout_margin="10dp"
         app:cardBackgroundColor="#855DF4"
-        android:layout_width="match_parent"
-        android:layout_height="125dp">
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="111dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/info"
-                android:layout_width="match_parent"
+                android:layout_width="312dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="35dp"
                 android:text="Information"
                 android:textAlignment="center"
                 android:textColor="#FEFFFE"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@+id/dlt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
 
         </LinearLayout>
 

@@ -32,6 +32,7 @@ public class timemobileprofile extends AppCompatActivity {
     TextInputLayout ttittle,dd,ttime;
     RadioGroup rg;
     RadioButton rb;
+    long profileId;
     int year,month,day,hour,min;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -43,6 +44,7 @@ public class timemobileprofile extends AppCompatActivity {
         ttittle=findViewById(R.id.tittle);
         dd=findViewById(R.id.date);
         rg=findViewById(R.id.rdg);
+        profileId=System.currentTimeMillis();
         ttime=findViewById(R.id.t_time);
         editText=findViewById(R.id.edate);
         editText2=findViewById(R.id.rtime);
@@ -77,7 +79,8 @@ public class timemobileprofile extends AppCompatActivity {
                             String fl_rb=rb.getText().toString();
                             String ft_time=ttime.getEditText().getText().toString();
                             timemobileprofilestore timemobileprofilestores=new timemobileprofilestore(fl_tittle,fl_dd,fl_rb,ft_time);
-                            reference.child(fl_tittle).setValue(timemobileprofilestores);
+                            timemobileprofilestores.setId(profileId);
+                            reference.child(String.valueOf(profileId)).setValue(timemobileprofilestores);
                             Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
@@ -115,6 +118,14 @@ public class timemobileprofile extends AppCompatActivity {
             datePickerDialog.show();
 
         });
+        timemobileprofilestore data=(timemobileprofilestore) getIntent().getSerializableExtra("data");
+        if(data !=null)
+        {
+            dd.getEditText().setText(data.getDate());
+            ttittle.getEditText().setText(data.getDate());
+            ttittle.getEditText().setText(data.getDate());
+            profileId = data.getId();
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

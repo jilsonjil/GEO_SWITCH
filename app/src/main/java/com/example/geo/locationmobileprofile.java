@@ -37,6 +37,7 @@ public class locationmobileprofile extends AppCompatActivity {
     RadioGroup rg;
     RadioButton rb;
     int year,month,day;
+    long profileid;
     Button savebtn,view;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -47,6 +48,7 @@ public class locationmobileprofile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mprofilel);
         ltittle=findViewById(R.id.tittle);
+        profileid=System.currentTimeMillis();
         dd=findViewById(R.id.date);
         lloc=findViewById(R.id.rlocation);
         editText=findViewById(R.id.edate);
@@ -84,7 +86,8 @@ public class locationmobileprofile extends AppCompatActivity {
                             String fl_rb=rb.getText().toString();
 
                             locationmobileprofilestore locmprofiles = new locationmobileprofilestore(fl_tittle,fl_dd,fl_rb,location);
-                            reference.child(fl_tittle).setValue(locmprofiles);
+                            locmprofiles.setId(profileid);
+                            reference.child(String.valueOf(profileid)).setValue(locmprofiles);
                             Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);
@@ -127,7 +130,6 @@ public class locationmobileprofile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),locationmobileprofileview.class);
                 startActivity(intent);
-                finish();
 
             }
         });
@@ -135,7 +137,22 @@ public class locationmobileprofile extends AppCompatActivity {
             Intent intent = new Intent(locationmobileprofile.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
+        locationmobileprofilestore data=(locationmobileprofilestore) getIntent().getSerializableExtra("data");
+        if(data !=null)
+        {
+            ltittle.getEditText().setText(data.getTittle());
+            dd.getEditText().setText(data.getDate());
+            profileid=data.getId();
+            location=data.getLocation();
+            if (location != null && !location.isEmpty()) {
+                setLocationTitle(location.get(1),location.get(0));
+            }
+
+
+        }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -149,7 +166,11 @@ public class locationmobileprofile extends AppCompatActivity {
             listLoc.add(lon);
             listLoc.add(lat);
             location = listLoc;
-
+            setLocationTitle(lat, lon);
+        }
+    }
+    private void setLocationTitle(Double lat, Double lon) {
+        String title=String.valueOf(lon) + "," + String.valueOf(lat);
             if (Geocoder.isPresent()) {
                 Geocoder geocoder = new Geocoder(this);
                 try {
@@ -166,8 +187,7 @@ public class locationmobileprofile extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            lloc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
+            lloc.getEditText().setText(title);
         }
     }
 
-}

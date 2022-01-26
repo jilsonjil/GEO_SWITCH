@@ -9,6 +9,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.CaseMap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class locationconnectivity extends AppCompatActivity {
     TextInputLayout ltittle,dd,loc,add;
     EditText editText;
     int year,month,day;
+    long coId;
     Button savebtn,view;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
@@ -43,14 +45,15 @@ public class locationconnectivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connectivityl);
-        ltittle=findViewById(R.id.tittle);
-        dd=findViewById(R.id.date);
-        loc=findViewById(R.id.location);
-        add=findViewById(R.id.address);
-        editText=findViewById(R.id.edate);
-        Calendar calendar=Calendar.getInstance();
-        view=findViewById(R.id.showconnect);
-        savebtn=findViewById(R.id.rlsave);
+        ltittle = findViewById(R.id.tittle);
+        dd = findViewById(R.id.date);
+        loc = findViewById(R.id.location);
+        coId = System.currentTimeMillis();
+        add = findViewById(R.id.address);
+        editText = findViewById(R.id.edate);
+        Calendar calendar = Calendar.getInstance();
+        view = findViewById(R.id.showconnect);
+        savebtn = findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,50 +64,41 @@ public class locationconnectivity extends AppCompatActivity {
                 if (!l_tittle.isEmpty()) {
                     ltittle.setError(null);
 
-                    if(!l_dd.isEmpty())
-                    {
-                    dd.setError(null);
+                    if (!l_dd.isEmpty()) {
+                        dd.setError(null);
 
-                    if(!l_add.isEmpty())
-                    {
-                        add.setError(null);
+                        if (!l_add.isEmpty()) {
+                            add.setError(null);
 
-                        if(!l_loc.isEmpty())
+                            if (!l_loc.isEmpty()) {
+                                loc.setError(null);
 
-                        {
-                            loc.setError(null);
-
-                            SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
-                            String uname=pref.getString("userId","");
-                            firebaseDatabase = FirebaseDatabase.getInstance();
-                            reference = firebaseDatabase.getReference("user").child(uname).child("location_connectivity");
-                            String fl_tittle = ltittle.getEditText().getText().toString();
-                            String fl_dd = dd.getEditText().getText().toString();
-                            String fl_loc = loc.getEditText().getText().toString();
-                            String fl_add = add.getEditText().getText().toString();
-                            locationconnectivitystore locconnectivitystores=new locationconnectivitystore(fl_tittle,fl_dd,fl_add,location);
-                            reference.child(fl_tittle).setValue(locconnectivitystores);
-                            Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(getApplicationContext(),dashboard.class);
-                            startActivity(intent);
+                                SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+                                String uname = pref.getString("userId", "");
+                                firebaseDatabase = FirebaseDatabase.getInstance();
+                                reference = firebaseDatabase.getReference("user").child(uname).child("location_connectivity");
+                                String fl_tittle = ltittle.getEditText().getText().toString();
+                                String fl_dd = dd.getEditText().getText().toString();
+                                String fl_loc = loc.getEditText().getText().toString();
+                                String fl_add = add.getEditText().getText().toString();
+                                locationconnectivitystore locconnectivitystores = new locationconnectivitystore(fl_tittle, fl_dd, fl_add, location);
+                                locconnectivitystores.setId(coId);
+                                reference.child(String.valueOf(coId)).setValue(locconnectivitystores);
+                                Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), dashboard.class);
+                                startActivity(intent);
 
 
+                            } else {
+                                loc.setError("Select location");
+                            }
+                        } else {
+                            add.setError("Enter address");
                         }
-                        else
-                        {
-                            loc.setError("Select location");
-                        }
-                     }
-                    else{
-                        add.setError("Enter address");
-                    }
-                    }
-                    else
-                    {
+                    } else {
                         dd.setError("Select date");
                     }
-                }
-                else {
+                } else {
                     ltittle.setError("Enter tittle");
 
                 }
@@ -121,7 +115,7 @@ public class locationconnectivity extends AppCompatActivity {
                     editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
                 }
-            },year,month,day);
+            }, year, month, day);
 //            DatePickerDialog datePickerDialog = new DatePickerDialog(reminderl.this, new DatePickerDialog.OnDateSetListener() {
 //                @Override
 //                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -136,7 +130,7 @@ public class locationconnectivity extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),locationconnectivityview.class);
+                Intent intent = new Intent(getApplicationContext(), locationconnectivityview.class);
                 startActivity(intent);
 
 
@@ -146,21 +140,35 @@ public class locationconnectivity extends AppCompatActivity {
             Intent intent = new Intent(locationconnectivity.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
+        locationconnectivitystore data = (locationconnectivitystore) getIntent().getSerializableExtra("data");
+        if (data != null) {
+            location = data.getLocation();
+            dd.getEditText().setText(data.getDate());
+            add.getEditText().setText(data.getAddress());
+
+            ltittle.getEditText().setText(data.getTittle());
+            if (location != null && !location.isEmpty()) {
+                setLocationTitle(location.get(1), location.get(0));
+            }
+        }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 102 && resultCode == Activity.RESULT_OK && data != null) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == 102 && resultCode == Activity.RESULT_OK && data != null) {
 
-            double lon = data.getDoubleExtra("longitude", 0);
-            double lat = data.getDoubleExtra("latitude", 0);
+                double lon = data.getDoubleExtra("longitude", 0);
+                double lat = data.getDoubleExtra("latitude", 0);
 
-            ArrayList<Double> listLoc = new ArrayList<>();
-            listLoc.add(lon);
-            listLoc.add(lat);
-            location = listLoc;
-
+                ArrayList<Double> listLoc = new ArrayList<>();
+                listLoc.add(lon);
+                listLoc.add(lat);
+                location = listLoc;
+                setLocationTitle(lat, lon);
+            }
+        }
+        private void setLocationTitle(Double lat, Double lon) {
             if (Geocoder.isPresent()) {
                 Geocoder geocoder = new Geocoder(this);
                 try {
@@ -177,7 +185,8 @@ public class locationconnectivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            loc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
+            loc.getEditText().setText("");
         }
     }
-}
+
+
