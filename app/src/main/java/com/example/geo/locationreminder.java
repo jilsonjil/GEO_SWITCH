@@ -24,17 +24,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class locationreminder extends AppCompatActivity {
 
     TextInputLayout ltitle, dd, task, rad, loc;
     EditText editText;
-    Button savebtn,view;
+    Button savebtn, view;
     int year, month, day;
+    long reminderId;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     List<Double> location;
@@ -43,14 +46,15 @@ public class locationreminder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locreminder);
+        reminderId = System.currentTimeMillis();
         ltitle = findViewById(R.id.tittle);
         dd = findViewById(R.id.date);
         task = findViewById(R.id.reminder);
         rad = findViewById(R.id.radius);
         loc = findViewById(R.id.location);
         editText = findViewById(R.id.edate);
-        view=findViewById(R.id.showreminder);
-        Calendar calendar = Calendar.getInstance();
+        view = findViewById(R.id.showreminder);
+
         savebtn = findViewById(R.id.rlsave);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +79,7 @@ public class locationreminder extends AppCompatActivity {
                                 if (!l_loc.isEmpty()) {
                                     loc.setError(null);
                                     SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
-                                    String uname=pref.getString("userId","");
+                                    String uname = pref.getString("userId", "");
                                     firebaseDatabase = FirebaseDatabase.getInstance();
                                     reference = firebaseDatabase.getReference("user").child(uname).child("location_reminder");
                                     String fl_tittle = ltitle.getEditText().getText().toString();
@@ -85,7 +89,8 @@ public class locationreminder extends AppCompatActivity {
                                     String fl_loc = loc.getEditText().getText().toString();
 
                                     locationreminderstore locreminderstores = new locationreminderstore(fl_tittle, fl_dd, fl_task, fl_rad, location);
-                                    reference.child(fl_tittle).setValue(locreminderstores);
+                                    locreminderstores.setId(reminderId);
+                                    reference.child(String.valueOf(reminderId)).setValue(locreminderstores);
                                     Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
 
@@ -110,16 +115,27 @@ public class locationreminder extends AppCompatActivity {
             }
         });
         dd.setEndIconOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            if (!dd.getEditText().getText().toString().isEmpty()) {
+                try {
+                    Date d = SimpleDateFormat.getDateInstance().parse(dd.getEditText().getText().toString());
+                    if (d != null)
+                        calendar.setTime(d);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
+
             @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
                 }
-            },year,month,day);
+            }, year, month, day);
 
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
@@ -137,8 +153,26 @@ public class locationreminder extends AppCompatActivity {
 
         loc.setEndIconOnClickListener(v -> {
             Intent intent = new Intent(locationreminder.this, MapsActivity.class);
+            if (location != null && !location.isEmpty()) {
+                intent.putExtra("lon",location.get(0));
+                intent.putExtra("lat", location.get(1));
+            }
             startActivityForResult(intent, 102);
         });
+
+        locationreminderstore data = (locationreminderstore) getIntent().getSerializableExtra("data");
+        if (data != null) {
+            ltitle.getEditText().setText(data.getTittle());
+            task.getEditText().setText(data.getReminder());
+            rad.getEditText().setText(data.getRadius());
+            location = data.getLocation();
+            dd.getEditText().setText(data.getDate());
+            reminderId = data.getId();
+            if (location != null && !location.isEmpty()) {
+                setLocationTitle(location.get(1), location.get(0));
+            }
+
+        }
     }
 
     @Override
@@ -153,24 +187,28 @@ public class locationreminder extends AppCompatActivity {
             listLoc.add(lon);
             listLoc.add(lat);
             location = listLoc;
-
-            if (Geocoder.isPresent()) {
-                Geocoder geocoder = new Geocoder(this);
-                try {
-                   List<Address> addresses = geocoder.getFromLocation(lat,lon,1);
-                   if (!addresses.isEmpty()) {
-                       if (addresses.get(0).getMaxAddressLineIndex() > 0) {
-                           loc.getEditText().setText(
-                                   addresses.get(0).getAddressLine(0)
-                           );
-                           return;
-                       }
-                   }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            loc.getEditText().setText(String.valueOf(lon)+","+String.valueOf(lat));
+            setLocationTitle(lat,lon);
         }
+    }
+
+    private void setLocationTitle(Double lat, Double lon) {
+        String title = String.valueOf(lon) + "," + String.valueOf(lat);
+        if (Geocoder.isPresent()) {
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+                if (!addresses.isEmpty()) {
+                    if (addresses.get(0).getMaxAddressLineIndex() > 0) {
+
+                        title = addresses.get(0).getAddressLine(0);
+
+                        return;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        loc.getEditText().setText(title);
     }
 }

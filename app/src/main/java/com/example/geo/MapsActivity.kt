@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -24,7 +25,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import java.io.IOException
+import java.util.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -55,6 +61,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Location not selected", Toast.LENGTH_SHORT).show()
             }
         }
+
+        if (!Places.isInitialized()) {
+            Places.initialize(applicationContext, getString(R.string.map_api_key))
+        }
+
+
+// Initialize the AutocompleteSupportFragment.
+        val autocompleteFragment =
+            supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment?
+
+        autocompleteFragment!!.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME,Place.Field.LAT_LNG))
+
+        autocompleteFragment!!.setOnPlaceSelectedListener(object : PlaceSelectionListener {
+            override fun onPlaceSelected(place: Place) {
+                Log.i("MAP", "Place: " + place.name + ", " + place.id+",${place.latLng?.latitude}")
+                place.latLng?.let {
+                    mMap.clear()
+                    val markerOptions = getMarkerwithTitle(MarkerOptions().position(it))
+                    mMap.addMarker(markerOptions)
+                    selectedLocation = it
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it, 12f))
+                }
+            }
+
+            override fun onError(status: Status) {
+                Log.i("MAP", "An error occurred: $status")
+            }
+        })
 
 
     }
@@ -94,7 +128,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), 12f))
         } else {
             //checkGpsEnabled()
-            setupMap()
+            //setupMap()
         }
 
 
@@ -126,7 +160,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun checkGpsEnabled() {
         val locationMgr = getSystemService(LOCATION_SERVICE) as LocationManager
         if (locationMgr.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            setupMap()
+            //setupMap()
         } else {
             showGPSDisabledAlertToUser()
         }

@@ -1,8 +1,10 @@
 package com.example.geo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class locationreminderstore {
+public class locationreminderstore implements Serializable {
+    long id;
     String Tittle;
     String Date;
     String Reminder;
@@ -19,6 +21,15 @@ public class locationreminderstore {
         this.Reminder = Reminder;
         this.Radius = Radius;
         this.Location = Location;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTittle() {
