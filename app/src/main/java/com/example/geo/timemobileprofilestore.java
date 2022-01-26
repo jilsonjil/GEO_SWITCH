@@ -1,6 +1,9 @@
 package com.example.geo;
 
-public class timemobileprofilestore {
+import java.io.Serializable;
+
+public class timemobileprofilestore implements Serializable {
+    long id;
     String Tittle;
     String Date;
     String Profile;
@@ -17,6 +20,13 @@ public class timemobileprofilestore {
         Date = date;
         Profile = profile;
         Time = time;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     public String getTittle() {
         return Tittle;

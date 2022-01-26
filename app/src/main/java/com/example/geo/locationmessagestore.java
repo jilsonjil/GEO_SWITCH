@@ -1,7 +1,9 @@
 package com.example.geo;
+import java.io.Serializable;
 import java.util.List;
 
-public class locationmessagestore {
+public class locationmessagestore implements Serializable {
+    long id;
     String Contact_name;
     String Phone_number;
     String Date;
@@ -20,6 +22,13 @@ public class locationmessagestore {
         this.Date = Date;
         this.Message = Message;
         this.Location = Location;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     public String getContact_name() {
         return Contact_name;

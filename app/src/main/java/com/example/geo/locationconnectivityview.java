@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -55,6 +56,9 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
 
     @Override
     public void Onclick(locationconnectivitystore data) {
+        Intent i=new Intent(this,locationconnectivity.class);
+        i.putExtra("data",data);
+        startActivity(i);
 
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -54,6 +55,9 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
 
     @Override
     public void Onclick(timemobileprofilestore data) {
+        Intent i=new Intent(this,timemobileprofile.class);
+        i.putExtra("data",data);
+        startActivity(i);
 
     }
 }

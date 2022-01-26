@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -55,6 +56,8 @@ public class locationmobileprofileview extends AppCompatActivity implements Loca
 
     @Override
     public void Onclick(locationmobileprofilestore data) {
-
+        Intent i=new Intent(this,locationmobileprofile.class);
+        i.putExtra("data",data);
+        startActivity(i);
     }
 }

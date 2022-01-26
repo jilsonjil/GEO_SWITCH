@@ -1,6 +1,9 @@
 package com.example.geo;
 
-public class timemessagestore {
+import java.io.Serializable;
+
+public class timemessagestore implements Serializable {
+    long id;
     String Contact_name;
     String Phone_number;
     String Date;
@@ -16,6 +19,13 @@ public class timemessagestore {
         Date = date;
         Message = message;
         Time = time;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getContact_name() {

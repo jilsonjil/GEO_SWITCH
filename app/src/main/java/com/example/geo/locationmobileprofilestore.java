@@ -1,11 +1,11 @@
 package com.example.geo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class locationmobileprofilestore {
+public class locationmobileprofilestore implements Serializable {
+    long id;
     String Tittle;
-
-
     List<Double> Location;
     String Date;
     String Profile;
@@ -19,6 +19,13 @@ public class locationmobileprofilestore {
         this.Date = Date;
         this.Profile = Profile;
         this.Location = Location;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     public String getTittle() {
         return Tittle;

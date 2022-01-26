@@ -1,7 +1,9 @@
 package com.example.geo;
 
-public class timereminderstore {
+import java.io.Serializable;
 
+public class timereminderstore implements Serializable {
+    long id;
     String Tittle;
     String Date;
     String Reminder;
@@ -16,6 +18,13 @@ public class timereminderstore {
         this.Date = Date;
         this.Reminder = Reminder;
         this.Time = Time;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTittle() {
