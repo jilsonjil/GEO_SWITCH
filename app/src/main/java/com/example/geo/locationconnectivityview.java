@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,12 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class locationconnectivityview extends AppCompatActivity implements LocationConnectivityRecyclerView.OnclickListener{
+    ImageView delete;
 
     LocationConnectivityRecyclerView adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locationconnectivityview);
+        delete=findViewById(R.id.dlt);
         RecyclerView recyclerView = findViewById(R.id.recycler_connectivity);
         adapter = new LocationConnectivityRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +56,12 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
 
             }
         });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -61,4 +71,5 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
         startActivity(i);
 
     }
+
 }

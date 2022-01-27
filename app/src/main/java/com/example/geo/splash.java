@@ -34,17 +34,17 @@ public class splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
-                String uname=pref.getString("userId","");
-                if (uname.isEmpty()) {
-                    Intent intent=new Intent(splash.this, login.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent=new Intent(splash.this,dashboard.class);
-                    startActivity(intent);
-                    finish();
-                }
+               // SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+               // String uname=pref.getString("userId","");
+               // if (uname.isEmpty()) {
+                   Intent intent=new Intent(splash.this, login.class);
+                   startActivity(intent);
+                  //  finish();
+                //} else {
+                 //   Intent intent=new Intent(splash.this,dashboard.class);
+                  //  startActivity(intent);
+                   // finish();
+                //}
 
             }
         },SPALSH_SCREEN);

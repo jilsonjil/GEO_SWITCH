@@ -169,6 +169,7 @@ public class locationconnectivity extends AppCompatActivity {
             }
         }
         private void setLocationTitle(Double lat, Double lon) {
+            String title = String.valueOf(lon) + "," + String.valueOf(lat);
             if (Geocoder.isPresent()) {
                 Geocoder geocoder = new Geocoder(this);
                 try {
@@ -185,7 +186,7 @@ public class locationconnectivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            loc.getEditText().setText("");
+            loc.getEditText().setText(title);
         }
     }
 

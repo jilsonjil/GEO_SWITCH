@@ -47,6 +47,7 @@ public class LocationConnectivityRecyclerView extends RecyclerView.Adapter<Recyc
         });
     }
 
+
     @Override
     public int getItemCount() {
         return locconnectList.size();
@@ -57,6 +58,7 @@ public class LocationConnectivityRecyclerView extends RecyclerView.Adapter<Recyc
         this.locconnectList.addAll(locconnectList);
         notifyDataSetChanged();
     }
+
 
     class ReminderViewHolder extends RecyclerView.ViewHolder {
         //TextView info;
