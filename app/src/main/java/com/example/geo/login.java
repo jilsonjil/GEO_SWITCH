@@ -29,7 +29,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.log);
+        setContentView(R.layout.login);
 
         signupbtn=findViewById(R.id.signup);
         loginbtn=findViewById(R.id.login);
@@ -61,8 +61,8 @@ public class login extends AppCompatActivity {
                                 {
                                     username.setError(null);
 
-                                    String passwordcheck=dataSnapshot.child(user_name).child("password").getValue(String.class);
-                                    if(pass_word.equals(passw))
+                                    String passwordcheck=dataSnapshot.child(user_name).child("profile").child("password").getValue(String.class);
+                                    if(passwordcheck.equals(passw))
                                     {
                                         upassword.setError(null);
                                         SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
@@ -78,7 +78,7 @@ public class login extends AppCompatActivity {
 
                                 }
                                 else{
-                                    username.setError("user doesnot exist");
+                                    username.setError("user doesnot exists");
                                 }
                             }
 

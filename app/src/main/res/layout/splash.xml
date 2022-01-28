@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#F4EEEE"
-        android:src="@drawable/screen2" />
+        android:src="@drawable/geologo" />
 
     <TextView
         android:id="@+id/textView5"

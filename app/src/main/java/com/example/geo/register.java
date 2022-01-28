@@ -58,7 +58,7 @@ public class register extends AppCompatActivity {
             {
                 mail.setError(null);
 
-                if (!Sphone.isEmpty()) {
+                if (!Sphone.isEmpty()&&Sphone.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$")) {
                     phone.setError(null);
                     if (!Su_name.isEmpty()) {
                         u_name.setError(null);
@@ -121,7 +121,7 @@ public class register extends AppCompatActivity {
 
                 else
                     {
-                    phone.setError("Please enter Your phone number");
+                    phone.setError("Enter valid Phone number");
                     }
             }
             else

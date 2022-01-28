@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_baseline_edit_location_24.xml" value="0.1" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_baseline_phone_24.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_calendar_549.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_email.xml" value="0.1" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_login_password_11924.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_menu.xml" value="0.2703125" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_user_3296.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/ic_wave.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/drawable/view_bg.xml" value="0.2546875" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/Login.xml" value="0.1" />
@@ -34,7 +38,8 @@
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locreminder.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locreminderview.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/locreminderviewlist.xml" value="0.16145833333333334" />
-        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/log.xml" value="0.264" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/log.xml" value="0.1" />
+        <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/messagel.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/messaget.xml" value="0.1" />
         <entry key="..\:/Users/Eldho M V/AndroidStudioProjects/GEO/app/src/main/res/layout/mprofilel.xml" value="0.176" />

@@ -49,22 +49,30 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/geologo"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
 
     <TextView
         android:id="@+id/geo"
         android:layout_width="327dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="10dp"
         android:text="GEO SWITCH"
-        android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:textColor="@color/primarydark"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        />
 
 
 
@@ -78,10 +86,9 @@
         android:drawablePadding="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/geo"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="Username">
 
@@ -107,7 +114,7 @@
         android:drawablePadding="16dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:padding="16dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usname"
@@ -161,7 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:text="New user?Sign up now"
         android:backgroundTint="#ffffff"
