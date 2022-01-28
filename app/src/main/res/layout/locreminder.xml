@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="171dp"
-        android:layout_height="45dp"
+        android:layout_height="75dp"
 
         android:text="GEO SWITCH"
         android:textSize="30sp"
@@ -49,21 +49,17 @@
         app:srcCompat="@drawable/geologo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@drawable/reminder" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/aclonica"
+        android:layout_marginTop="16dp"
         android:text="SET REMINDER"
-        android:textColor="@color/primarydark"
+        android:textColor="@color/background"
         android:textColorLink="#F44336"
-        android:textSize="15sp" />
+        android:textSize="25sp" />
 
     />
 
@@ -149,7 +145,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Radius"
+                android:hint="Radius (in meters)"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>

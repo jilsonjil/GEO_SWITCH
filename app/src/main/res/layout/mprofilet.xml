@@ -5,22 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login"
+    android:background="@drawable/dbg1"
     android:padding="20dp"
     android:orientation="vertical">
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/profile"
-        android:layout_gravity="center"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="171dp"
+            android:layout_height="75dp"
+
+            android:text="GEO SWITCH"
+            android:textSize="30sp"
+            android:textColor="@color/primarydark"
+            app:fontFamily="@font/aclonica"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Lets Start...."
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:srcCompat="@drawable/geologo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/aclonica"
+        android:layout_marginTop="16dp"
         android:text="SET MOBILE PROFILE"
         android:textColor="@color/background"
         android:textColorLink="#F44336"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
     />
     <LinearLayout
@@ -33,6 +71,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tittle"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:hint="Tittle">
 
@@ -48,6 +89,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/date"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_calendar_549"
@@ -72,24 +116,30 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:text="Profile" />
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:checkedButton="@+id/r1"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginEnd="32dp"
             android:id="@+id/rdg"
             android:padding="3dp">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/r1"
-                android:text="Vibration"/>
+                android:text="Vibration Mode"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/r2"
-                android:text="Silent"/>
+                android:text="Silent Mode"/>
         </RadioGroup>
 
 
@@ -98,6 +148,9 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_delivery_time_4443"
             android:id="@+id/t_time"
@@ -122,19 +175,24 @@
         android:layout_height="wrap_content"
         android:text="SAVE"
         android:id="@+id/rlsave"
-        android:background="@color/background"
+        android:backgroundTint="@color/primarydark"
         android:layout_gravity="center_vertical"
         android:elevation="5dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SHOW MOBILE PROFILES"
         android:id="@+id/showmprofile"
-        android:background="@color/background"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
         android:layout_gravity="center_vertical"
         android:elevation="5dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"/>
 
 </LinearLayout>
 

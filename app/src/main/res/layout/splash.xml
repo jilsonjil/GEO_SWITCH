@@ -24,7 +24,7 @@
         android:includeFontPadding="true"
         android:text="GEO SWITCH"
         android:textAlignment="center"
-        android:textColor="#07EA9B"
+        android:textColor="@color/primarydark"
         android:textSize="55sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
