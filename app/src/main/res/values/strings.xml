@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GEO</string>
+    <string name="app_name">GEO SWITCH</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="title_activity_locationtime">locationtime</string>
@@ -11,11 +11,14 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_timemessageview">timemessageview</string>
     <string name="map_key" translatable="false">AIzaSyB_qsP8AOP_P0MdlPz-48TDaJYjTP3vbjo</string>
     <string name="map_api_key">AIzaSyAuVHHq2XMD-iXvIeujl0RdtrJdO8_qdKE</string>
+    <string name="title_activity_navigation">navigation</string>
+
 
 </resources>

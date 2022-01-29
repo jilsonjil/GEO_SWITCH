@@ -111,21 +111,23 @@ public class timereminder extends AppCompatActivity {
                 }
             }
         });
-        dd.setEndIconOnClickListener(v -> {
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH);
-            day = calendar.get(Calendar.DAY_OF_MONTH);
-            @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    editText1.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-                }
-            },year,month,day);
-            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
-            datePickerDialog.show();
+            dd.setEndIconOnClickListener(v -> {
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        editText1.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-        });
+                    }
+                }, year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.show();
+
+            });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
