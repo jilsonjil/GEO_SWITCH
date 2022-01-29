@@ -94,7 +94,7 @@ public class timemobileprofile extends AppCompatActivity {
                     }
                     else
                     {
-                        dd.setError("select date");
+                        dd.setError("Select date");
                     }
                 }
                 else

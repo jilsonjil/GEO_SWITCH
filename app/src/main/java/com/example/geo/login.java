@@ -72,13 +72,13 @@ public class login extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else
-                                    { upassword.setError("wrong password");
+                                    { upassword.setError("Wrong Password");
 
                                     }
 
                                 }
                                 else{
-                                    username.setError("user doesnot exists");
+                                    username.setError("User doesnot exists");
                                 }
                             }
 
@@ -92,12 +92,12 @@ public class login extends AppCompatActivity {
                     }
                     else
                     {
-                        upassword.setError("please enter your password");
+                        upassword.setError("Please enter your password");
                     }
                 }
                 else
                 {
-                    username.setError("please enter user name");
+                    username.setError("Please enter user name");
                 }
 
 

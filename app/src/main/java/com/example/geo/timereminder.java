@@ -90,19 +90,19 @@ public class timereminder extends AppCompatActivity {
                             }
                             else
                             {
-                                ti.setError("select time");
+                                ti.setError("Select time");
                             }
                         }
 
 
                         else
                         {
-                            task.setError("enter reminder ");
+                            task.setError("Enter reminder ");
                         }
                     }
                     else
                     {
-                        dd.setError("select date");
+                        dd.setError("Select date");
                     }
                 }
                 else

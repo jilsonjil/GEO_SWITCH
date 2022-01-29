@@ -101,7 +101,7 @@ public class locationmobileprofile extends AppCompatActivity {
                     }
                     else
                     {
-                      dd.setError("select date");
+                      dd.setError("Select date");
                     }
                 }
                 else

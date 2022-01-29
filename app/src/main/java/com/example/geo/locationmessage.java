@@ -68,7 +68,7 @@ public class locationmessage extends AppCompatActivity {
                     {
                         dd.setError(null);
 
-                        if(!l_pno.isEmpty())
+                        if(!l_pno.isEmpty()&&l_pno.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"))
                         {
                             phn_no.setError(null);
 
@@ -100,22 +100,22 @@ public class locationmessage extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    loc.setError("select location");
+                                    loc.setError("Select location");
                                 }
                             }
                             else
                             {
-                                msg.setError("enter message");
+                                msg.setError("Enter message");
                             }
                         }
                         else
                         {
-                            phn_no.setError("enter phone number");
+                            phn_no.setError("Enter valid phone number");
                         }
                     }
                     else
                     {
-                        dd.setError("select date");
+                        dd.setError("Select date");
                     }
                 }
                 else

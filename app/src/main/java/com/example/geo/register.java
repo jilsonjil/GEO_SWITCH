@@ -107,10 +107,10 @@ public class register extends AppCompatActivity {
                                     mail.setError("Invalid email");
                                 }
                             } else {
-                                cpass.setError("password doe's not match ");
+                                cpass.setError("Password doe's not match ");
                             }
                         } else {
-                            pass.setError("please enter Your password");
+                            pass.setError("Please enter Your password");
                         }
                     } else {
                         u_name.setError("Enter user name");

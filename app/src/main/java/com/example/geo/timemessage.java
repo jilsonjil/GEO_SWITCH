@@ -64,7 +64,7 @@ public class timemessage extends AppCompatActivity {
                   {
                       dd.setError(null);
 
-                      if(!t_pno.isEmpty())
+                      if(!t_pno.isEmpty()&&t_pno.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"))
                       {
                           phn_no.setError(null);
 
@@ -96,22 +96,22 @@ public class timemessage extends AppCompatActivity {
                               }
                               else
                               {
-                                  tim.setError("select Time");
+                                  tim.setError("Select Time");
                               }
                           }
                           else
                           {
-                              msg.setError("enter message");
+                              msg.setError("Enter message");
                           }
                       }
                       else
                       {
-                          phn_no.setError("enter phone number");
+                          phn_no.setError("Enter valid phone number");
                       }
                   }
                   else
                   {
-                      dd.setError("select date");
+                      dd.setError("Select date");
                   }
               }
               else

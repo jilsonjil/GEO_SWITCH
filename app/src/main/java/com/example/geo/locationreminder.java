@@ -98,16 +98,16 @@ public class locationreminder extends AppCompatActivity {
                                     startActivity(intent);
 
                                 } else {
-                                    loc.setError("select location");
+                                    loc.setError("Select location");
                                 }
                             } else {
-                                rad.setError("enter radius");
+                                rad.setError("Enter radius");
                             }
                         } else {
-                            task.setError("enter reminder ");
+                            task.setError("Enter reminder ");
                         }
                     } else {
-                        dd.setError("select date");
+                        dd.setError("Select date");
                     }
                 } else {
                     ltitle.setError("Enter Tittle");
