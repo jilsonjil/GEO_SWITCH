@@ -10,7 +10,7 @@
         android:layout_width="400dp"
         android:layout_height="122dp"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#855DF4"
+        app:cardBackgroundColor="@color/primarydark"
         app:cardCornerRadius="20dp"
         app:cardElevation="6dp">
 
@@ -30,12 +30,6 @@
                 android:textColor="#FEFFFE"
                 android:textSize="30sp" />
 
-            <ImageView
-                android:id="@+id/dlt"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_delete" />
 
         </LinearLayout>
 

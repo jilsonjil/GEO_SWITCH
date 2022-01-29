@@ -27,7 +27,6 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locationconnectivityview);
-        delete=findViewById(R.id.dlt);
         RecyclerView recyclerView = findViewById(R.id.recycler_connectivity);
         adapter = new LocationConnectivityRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,12 +55,7 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
 
             }
         });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+       
     }
 
     @Override
