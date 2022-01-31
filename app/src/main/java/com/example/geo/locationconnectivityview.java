@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,7 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locationconnectivityview);
         RecyclerView recyclerView = findViewById(R.id.recycler_connectivity);
+        TextView textView=findViewById(R.id.notfound);
         adapter = new LocationConnectivityRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -47,7 +49,16 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
                     data.add(locationconnectivitystores);
 
                 }
-                adapter.add(data);
+                if(!data.isEmpty()) {
+                    textView.setVisibility(View.INVISIBLE);
+                    adapter.add(data);
+
+                }
+                else
+                {
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

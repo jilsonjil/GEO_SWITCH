@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.geo.ui.LocationMobileRecyclerView;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locationmobileprofileview);
         RecyclerView recyclerView =findViewById(R.id.recycler_profile);
+        TextView textView=findViewById(R.id.notfound);
         adapter=new TimeMobileRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -42,7 +45,16 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
 
                 }
 
+                if(!data.isEmpty()) {
+                    textView.setVisibility(View.INVISIBLE);
                     adapter.add(data);
+
+                }
+                else
+                {
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                }
 
 
             }

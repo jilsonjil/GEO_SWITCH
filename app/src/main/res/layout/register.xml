@@ -165,7 +165,7 @@
             android:layout_marginEnd="32dp"
             android:drawablePadding="16dp"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:text="*Only contains alphanumeric characters, underscore and dot,Number of characters must be between 8 to 20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

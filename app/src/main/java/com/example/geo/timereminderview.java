@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,7 @@ TimeReminderRecyclerView adapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.timereminderview);
         RecyclerView recyclerView =findViewById(R.id.recycler_reminder);
+        TextView textView=findViewById(R.id.notfound);
         adapter=new TimeReminderRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -40,8 +43,16 @@ TimeReminderRecyclerView adapter;
                     data.add(timereminderstores);
 
                 }
-                adapter.add(data);
+                if(!data.isEmpty()) {
+                    textView.setVisibility(View.INVISIBLE);
+                    adapter.add(data);
 
+                }
+                else
+                {
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

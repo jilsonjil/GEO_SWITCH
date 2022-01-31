@@ -37,8 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-
-            app:title="Geo Switch"
             app:titleMarginStart="40dp"
             tools:ignore="MissingConstraints" />
 

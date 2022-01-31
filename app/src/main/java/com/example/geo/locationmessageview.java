@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.geo.ui.LocationReminderRecyclerView;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +28,7 @@ public class locationmessageview extends AppCompatActivity implements LocationMe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.locationmessageview);
         RecyclerView recyclerView = findViewById(R.id.recycler_message);
+        TextView textView=findViewById(R.id.notfound);
         adapter = new LocationMessageRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -44,7 +47,16 @@ public class locationmessageview extends AppCompatActivity implements LocationMe
                     data.add(locationmessagestores);
 
                 }
-                adapter.add(data);
+                if(!data.isEmpty()) {
+                    textView.setVisibility(View.INVISIBLE);
+                    adapter.add(data);
+
+                }
+                else
+                {
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
