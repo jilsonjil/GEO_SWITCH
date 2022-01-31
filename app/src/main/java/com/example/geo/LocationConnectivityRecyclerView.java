@@ -24,6 +24,8 @@ public class LocationConnectivityRecyclerView extends RecyclerView.Adapter<Recyc
 
     public interface OnclickListener {
         public void Onclick(locationconnectivitystore data);
+
+        void OnDelete(locationconnectivitystore data);
     }
 
 
@@ -41,12 +43,17 @@ public class LocationConnectivityRecyclerView extends RecyclerView.Adapter<Recyc
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         locationconnectivitystore data = locconnectList.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
+        ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getTittle());
-        holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+
+        img.setOnClickListener(v -> {
             listener.Onclick(data);
         });
+        delete.setOnClickListener(v-> {
+            listener.OnDelete(data);
+        });
     }
-
 
     @Override
     public int getItemCount() {

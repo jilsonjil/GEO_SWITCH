@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class locationconnectivityview extends AppCompatActivity implements LocationConnectivityRecyclerView.OnclickListener{
-    ImageView delete;
+
 
     LocationConnectivityRecyclerView adapter;
     @Override
@@ -65,5 +65,10 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
         startActivity(i);
 
     }
-
+    public void OnDelete(locationconnectivitystore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("location_connectivity")
+                .child(String.valueOf(data.getId())).removeValue();
+    }
 }

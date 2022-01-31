@@ -61,7 +61,7 @@ public class register extends AppCompatActivity {
 
                 if (!Sphone.isEmpty() && Sphone.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$")) {
                     phone.setError(null);
-                    if (!Su_name.isEmpty()) {
+                    if (!Su_name.isEmpty()&&Su_name.matches("[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$")) {
                         u_name.setError(null);
 
                         if (!Spass.isEmpty()) {
@@ -167,7 +167,7 @@ public class register extends AppCompatActivity {
                             pass.setError("Please enter Your password");
                         }
                     } else {
-                        u_name.setError("Enter user name");
+                        u_name.setError("Enter Valid username");
 
                     }
                 } else {

@@ -117,14 +117,18 @@ public class locationmobileprofile extends AppCompatActivity {
             @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    calendar.set(Calendar.YEAR, year);
+                    calendar.set(Calendar.MONTH, month);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                     editText.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
                 }
-            },year,month,day);
+            }, year, month, day);
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
         });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

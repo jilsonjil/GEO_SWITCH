@@ -162,7 +162,7 @@ public class timereminder extends AppCompatActivity {
                         calendar.set(Calendar.MINUTE,minute);
                         if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
                             //editText2.setError("Select Future Time");
-                            Snackbar.make(editText2,"Select future time",Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(editText2,"Select upcoming time",Snackbar.LENGTH_SHORT).show();
                         } else {
                             //editText2.setError("");
                             hour=hourOfDay;
