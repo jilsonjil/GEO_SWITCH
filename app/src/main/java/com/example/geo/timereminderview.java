@@ -59,4 +59,10 @@ TimeReminderRecyclerView adapter;
         startActivity(i);
 
     }
+    public void OnDelete(timereminderstore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("time_reminder")
+                .child(String.valueOf(data.getId())).removeValue();
+    }
 }

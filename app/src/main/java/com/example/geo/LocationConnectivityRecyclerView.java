@@ -39,7 +39,7 @@ public class LocationConnectivityRecyclerView extends RecyclerView.Adapter<Recyc
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-     locationconnectivitystore data = locconnectList.get(position);
+        locationconnectivitystore data = locconnectList.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
         info.setText(data.getTittle());
         holder.itemView.setOnClickListener(v -> {

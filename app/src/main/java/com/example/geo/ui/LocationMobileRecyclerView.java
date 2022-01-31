@@ -3,6 +3,7 @@ package com.example.geo.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ public LocationMobileRecyclerView(OnclickListener listener) {
 
 public interface OnclickListener {
     public void Onclick(locationmobileprofilestore data);
+
+    void OnDelete(locationmobileprofilestore data);
 }
 
 
@@ -40,9 +43,15 @@ public interface OnclickListener {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         locationmobileprofilestore data = locmprofileList.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
+        ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getTittle());
-        holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+
+        img.setOnClickListener(v -> {
             listener.Onclick(data);
+        });
+        delete.setOnClickListener(v-> {
+            listener.OnDelete(data);
         });
     }
 

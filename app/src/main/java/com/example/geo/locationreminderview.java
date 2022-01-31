@@ -61,4 +61,10 @@ public class locationreminderview extends AppCompatActivity implements LocationR
         i.putExtra("data",data);
         startActivity(i);
     }
+    public void OnDelete(locationreminderstore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("location_reminder")
+                .child(String.valueOf(data.getId())).removeValue();
+    }
 }

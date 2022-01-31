@@ -3,6 +3,7 @@ package com.example.geo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ public class TimeReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.
 
     public interface OnclickListener {
         public void Onclick(timereminderstore data);
+
+        void OnDelete(timereminderstore data);
     }
     @NonNull
     @Override
@@ -34,9 +37,15 @@ public class TimeReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
        timereminderstore data =timereminderlist.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
+        ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getTittle());
-        holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+
+        img.setOnClickListener(v -> {
             listener.Onclick(data);
+        });
+        delete.setOnClickListener(v-> {
+            listener.OnDelete(data);
         });
     }
 

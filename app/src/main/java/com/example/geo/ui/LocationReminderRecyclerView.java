@@ -3,6 +3,7 @@ package com.example.geo.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,8 @@ public class LocationReminderRecyclerView extends RecyclerView.Adapter<RecyclerV
 
     public interface OnclickListener {
         public void Onclick(locationreminderstore data);
+
+        void OnDelete(locationreminderstore data);
     }
 
 
@@ -40,10 +43,16 @@ public class LocationReminderRecyclerView extends RecyclerView.Adapter<RecyclerV
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         locationreminderstore data = locreminderList.get(position);
        TextView info = holder.itemView.findViewById(R.id.info);
+        ImageView delete = holder.itemView.findViewById(R.id.img_delete);
        info.setText(data.getTittle());
-       holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+
+       img.setOnClickListener(v -> {
            listener.Onclick(data);
        });
+        delete.setOnClickListener(v-> {
+            listener.OnDelete(data);
+        });
     }
 
     @Override

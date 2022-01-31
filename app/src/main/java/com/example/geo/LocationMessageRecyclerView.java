@@ -45,7 +45,8 @@ public class LocationMessageRecyclerView extends RecyclerView.Adapter<RecyclerVi
         TextView info = holder.itemView.findViewById(R.id.info);
         ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getContact_name());
-        holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+        img.setOnClickListener(v -> {
             listener.Onclick(data);
         });
         delete.setOnClickListener(v-> {

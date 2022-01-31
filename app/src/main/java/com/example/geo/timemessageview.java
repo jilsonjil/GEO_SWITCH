@@ -59,4 +59,10 @@ TimeMessageRecyclerView adapter;
         startActivity(i);
 
     }
+    public void OnDelete(timemessagestore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("time_message")
+                .child(String.valueOf(data.getId())).removeValue();
+    }
 }

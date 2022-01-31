@@ -3,6 +3,7 @@ package com.example.geo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,8 @@ public class TimeMessageRecyclerView extends RecyclerView.Adapter<RecyclerView.V
 
     public interface OnclickListener {
         public void Onclick(timemessagestore data);
+
+        void OnDelete(timemessagestore data);
     }
 
 
@@ -37,12 +40,17 @@ public class TimeMessageRecyclerView extends RecyclerView.Adapter<RecyclerView.V
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         timemessagestore data = timemessageList.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
+        ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getContact_name());
-        holder.itemView.setOnClickListener(v -> {
+        ImageView img=holder.itemView.findViewById(R.id.img_edit);
+
+        img.setOnClickListener(v -> {
             listener.Onclick(data);
         });
+        delete.setOnClickListener(v-> {
+            listener.OnDelete(data);
+        });
     }
-
     @Override
     public int getItemCount() {
         return timemessageList.size();

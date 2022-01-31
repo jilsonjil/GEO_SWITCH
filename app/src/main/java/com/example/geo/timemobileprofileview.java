@@ -23,7 +23,7 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.timemobileprofileview);
+        setContentView(R.layout.locationmobileprofileview);
         RecyclerView recyclerView =findViewById(R.id.recycler_profile);
         adapter=new TimeMobileRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -41,7 +41,9 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
                     data.add(timemobileprofilestores);
 
                 }
-                adapter.add(data);
+
+                    adapter.add(data);
+
 
             }
 
@@ -59,5 +61,11 @@ public class timemobileprofileview extends AppCompatActivity implements TimeMobi
         i.putExtra("data",data);
         startActivity(i);
 
+    }
+    public void OnDelete(timemobileprofilestore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("time_mobileprofile")
+                .child(String.valueOf(data.getId())).removeValue();
     }
 }

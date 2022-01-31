@@ -60,4 +60,10 @@ public class locationmobileprofileview extends AppCompatActivity implements Loca
         i.putExtra("data",data);
         startActivity(i);
     }
+    public void OnDelete(locationmobileprofilestore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("location_mobileprofile")
+                .child(String.valueOf(data.getId())).removeValue();
+    }
 }
