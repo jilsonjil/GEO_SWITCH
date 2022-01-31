@@ -28,7 +28,7 @@ public class TimeMessageRecyclerView extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationmessageviewlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationconnectivityviewlist,parent,false);
         return new TimeMessageRecyclerView.ReminderViewHolder(view);
 
     }

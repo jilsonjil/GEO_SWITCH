@@ -31,7 +31,7 @@ public interface OnclickListener {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locmobileprofileviewlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationconnectivityviewlist,parent,false);
         return new LocationMobileRecyclerView.ReminderViewHolder(view);
 
     }

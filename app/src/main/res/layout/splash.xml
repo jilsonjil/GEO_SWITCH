@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
         android:background="#00BF4F4F"
-        android:fontFamily="@font/bad_script"
+        android:fontFamily="@font/baloo"
         android:includeFontPadding="true"
         android:text="GEO SWITCH"
         android:textAlignment="center"

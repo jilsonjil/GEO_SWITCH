@@ -45,9 +45,10 @@ public class dashboard extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("LOCATION BASED"));
         tabLayout.addTab(tabLayout.newTab().setText("TIME BASED"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setupWithViewPager(viewPager);
         final locationadapter adapter=new locationadapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        //viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -18,8 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class locationmessageview extends AppCompatActivity implements  LocationMessageRecyclerView.OnclickListener{
- LocationMessageRecyclerView adapter;
+public class locationmessageview extends AppCompatActivity implements LocationMessageRecyclerView.OnclickListener {
+    LocationMessageRecyclerView adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,15 +32,14 @@ public class locationmessageview extends AppCompatActivity implements  LocationM
         recyclerView.setHasFixedSize(true);
 
 
-
         SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
-        String uname=pref.getString("userId","");
+        String uname = pref.getString("userId", "");
         FirebaseDatabase.getInstance().getReference("user").child(uname)
                 .child("location_message").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<locationmessagestore> data = new ArrayList<>();
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     locationmessagestore locationmessagestores = postSnapshot.getValue(locationmessagestore.class);
                     data.add(locationmessagestores);
 
@@ -56,9 +56,17 @@ public class locationmessageview extends AppCompatActivity implements  LocationM
 
     @Override
     public void Onclick(locationmessagestore data) {
-        Intent i=new Intent(this,locationmessage.class);
-        i.putExtra("data",data);
+        Intent i = new Intent(this, locationmessage.class);
+        i.putExtra("data", data);
         startActivity(i);
 
+    }
+
+    @Override
+    public void OnDelete(locationmessagestore data) {
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String uname = pref.getString("userId", "");
+        FirebaseDatabase.getInstance().getReference("user").child(uname).child("location_message")
+                .child(String.valueOf(data.getId())).removeValue();
     }
 }

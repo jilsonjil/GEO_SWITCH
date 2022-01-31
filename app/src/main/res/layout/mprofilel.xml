@@ -135,13 +135,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/r1"
-
                     android:text="Vibration Mode   "/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/r2"
                     android:text="Silent Mode"/>
+
             </RadioGroup>
 
 

@@ -144,6 +144,9 @@ public class locationmobileprofile extends AppCompatActivity {
             dd.getEditText().setText(data.getDate());
             profileid=data.getId();
             location=data.getLocation();
+            if (data.getProfile().equals("Silent Mode")) {
+                rg.check(R.id.r2);
+            }
             if (location != null && !location.isEmpty()) {
                 setLocationTitle(location.get(1),location.get(0));
             }

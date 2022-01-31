@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -119,6 +120,9 @@ public class timereminder extends AppCompatActivity {
                 @SuppressLint("RestrictedApi") MaterialStyledDatePickerDialog datePickerDialog = new MaterialStyledDatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(Calendar.YEAR, year);
+                        calendar.set(Calendar.MONTH, month);
+                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         editText1.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
                     }
@@ -152,10 +156,20 @@ public class timereminder extends AppCompatActivity {
                 TimePickerDialog timePickerDialog=new TimePickerDialog(timereminder.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        hour=hourOfDay;
-                        min=minute;
-                        calendar.set(0,0,0,hour,min);
-                        editText2.setText(DateFormat.format("hh:mm:aa",calendar));
+
+                        //calendar.set(0,0,0,hour,min);
+                        calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                        calendar.set(Calendar.MINUTE,minute);
+                        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+                            //editText2.setError("Select Future Time");
+                            Snackbar.make(editText2,"Select future time",Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            //editText2.setError("");
+                            hour=hourOfDay;
+                            min=minute;
+                            editText2.setText(DateFormat.format("hh:mm:aa",calendar));
+                        }
+
 
                     }
                 },12,0,false);
