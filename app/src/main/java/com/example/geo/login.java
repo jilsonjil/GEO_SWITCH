@@ -35,6 +35,8 @@ public class login extends AppCompatActivity {
         loginbtn=findViewById(R.id.login);
         username=findViewById(R.id.usname);
         upassword=findViewById(R.id.pass);
+        forgot=findViewById(R.id.forgotPassword);
+        forgot.setVisibility(View.INVISIBLE);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
