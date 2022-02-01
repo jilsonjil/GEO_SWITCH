@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -89,13 +90,13 @@ public class locationconnectivity extends AppCompatActivity {
 
 
                             } else {
-                                loc.setError("Select location");
+                                Snackbar.make(loc,"Select Location",Snackbar.LENGTH_SHORT).show();
                             }
                         } else {
                             add.setError("Enter address");
                         }
                     } else {
-                        dd.setError("Select date");
+                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
                     }
                 } else {
                     ltittle.setError("Enter tittle");

@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -96,12 +97,12 @@ public class locationmobileprofile extends AppCompatActivity {
                         }
                         else
                         {
-                            lloc.setError("Select Location");
+                            Snackbar.make(lloc,"Select Location",Snackbar.LENGTH_SHORT).show();
                         }
                     }
                     else
                     {
-                      dd.setError("Select date");
+                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 else

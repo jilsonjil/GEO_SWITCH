@@ -90,12 +90,12 @@ public class timemobileprofile extends AppCompatActivity {
                         }
                         else
                         {
-                            ttime.setError("Select Time");
+                            Snackbar.make(ttime,"Select Time",Snackbar.LENGTH_SHORT).show();
                         }
                     }
                     else
                     {
-                        dd.setError("Select date");
+                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 else

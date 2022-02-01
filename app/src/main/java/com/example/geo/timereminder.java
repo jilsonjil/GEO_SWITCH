@@ -91,7 +91,7 @@ public class timereminder extends AppCompatActivity {
                             }
                             else
                             {
-                                ti.setError("Select time");
+                                Snackbar.make(ti,"Select Time",Snackbar.LENGTH_SHORT).show();
                             }
                         }
 
@@ -103,7 +103,7 @@ public class timereminder extends AppCompatActivity {
                     }
                     else
                     {
-                        dd.setError("Select date");
+                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 else

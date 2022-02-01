@@ -102,6 +102,7 @@
                 android:id="@+id/edate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:inputType="date"/>
 
 
@@ -162,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Time"
                 android:id="@+id/rtime"
+                android:enabled="false"
                 android:inputType="time"/>
 
         </com.google.android.material.textfield.TextInputLayout>
