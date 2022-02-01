@@ -72,7 +72,7 @@ public class register extends AppCompatActivity {
 
                                 if (Smail.matches("[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
                                     if (Spass.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=/])(?=\\S+$).{8,}$")) {
-                                        if (Su_name.matches("[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$")) {
+                                        if (Su_name.matches("[a-zA-Z0-9]+([._])*$")) {
 
 
                                             firebaseDatabase = FirebaseDatabase.getInstance();
@@ -96,13 +96,13 @@ public class register extends AppCompatActivity {
                                                                         .addListenerForSingleValueEvent(new ValueEventListener() {
                                                                             @Override
                                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                                if (snapshot.exists()) {
+                                                                                if (!snapshot.exists()) {
                                                                                     FirebaseDatabase.getInstance().getReference("user")
                                                                                             .orderByChild("profile/email").equalTo(Smail)
                                                                                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                                                                                 @Override
                                                                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                                                    if (snapshot.exists()) {
+                                                                                                    if (!snapshot.exists()) {
                                                                                                         registerstoringdata storingdatas = new registerstoringdata(Sfname_s, Smail_s, Sphone_s, Spass_s, Scpass_s, Suname_s);
                                                                                                         reference.child(Suname_s).child("profile").setValue(storingdatas).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                             @Override
