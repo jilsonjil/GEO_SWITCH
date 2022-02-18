@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.geo.utils.GeoFenceUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -90,9 +91,15 @@ public class locationreminder extends AppCompatActivity {
                                     String fl_loc = loc.getEditText().getText().toString();
 
                                     locationreminderstore locreminderstores = new locationreminderstore(fl_tittle, fl_dd, fl_task, fl_rad, location);
-                                    locreminderstores.setId(reminderId);
-                                    reference.child(String.valueOf(reminderId)).setValue(locreminderstores);
-                                    Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
+                                    locreminderstores.setId((int)reminderId );
+
+                                    new GeoFenceUtil(locationreminder.this).addToGeoFence(
+                                            (int) reminderId, location.get(1), location.get(0),1000
+                                    );
+
+
+                                    reference.child(String.valueOf((int)reminderId)).setValue(locreminderstores);
+                                    Toast.makeText(getApplicationContext(), "Save data Successfully ", Toast.LENGTH_SHORT).show();
 
 
                                     Intent intent = new Intent(getApplicationContext(), dashboard.class);

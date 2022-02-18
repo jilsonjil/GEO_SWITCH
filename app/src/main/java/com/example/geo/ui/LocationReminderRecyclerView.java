@@ -24,7 +24,6 @@ public class LocationReminderRecyclerView extends RecyclerView.Adapter<RecyclerV
 
     public interface OnclickListener {
         public void Onclick(locationreminderstore data);
-
         void OnDelete(locationreminderstore data);
     }
 

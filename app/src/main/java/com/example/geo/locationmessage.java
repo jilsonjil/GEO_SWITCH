@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.geo.utils.GeoFenceUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -94,6 +95,7 @@ public class locationmessage extends AppCompatActivity {
                                     locmessagestores.setId(messageId);
                                     reference.child(String.valueOf(messageId)).setValue(locmessagestores);
 
+
                                     Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(getApplicationContext(),dashboard.class);
                                     startActivity(intent);
@@ -161,6 +163,7 @@ public class locationmessage extends AppCompatActivity {
         if(data !=null)
         {
             location = data.getLocation();
+            messageId = data.getId();
             dd.getEditText().setText(data.getDate());
             msg.getEditText().setText(data.getMessage());
             phn_no.getEditText().setText(data.getPhone_number());

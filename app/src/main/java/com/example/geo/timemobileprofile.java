@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -19,14 +21,17 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.geo.utils.AlarmUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class timemobileprofile extends AppCompatActivity {
     EditText editText,editText2;
@@ -82,6 +87,32 @@ public class timemobileprofile extends AppCompatActivity {
                             timemobileprofilestore timemobileprofilestores=new timemobileprofilestore(fl_tittle,fl_dd,fl_rb,ft_time);
                             timemobileprofilestores.setId(profileId);
                             reference.child(String.valueOf(profileId)).setValue(timemobileprofilestores);
+
+                            try {
+                                Date date = new SimpleDateFormat("MMM d, yyyy hh:mm:a")
+                                        .parse(timemobileprofilestores.getDate() + " " + timemobileprofilestores.getTime());
+                                new AlarmUtil(getApplicationContext()).scheduleProfileChange(
+                                        timemobileprofilestores.getProfile(), date.getTime(), (int) timemobileprofilestores.getId()
+                                );
+
+                                NotificationManager notificationManager =
+                                        (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                                        && !notificationManager.isNotificationPolicyAccessGranted()) {
+
+                                    Intent intent = new Intent(
+                                            android.provider.Settings
+                                                    .ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+
+                                    startActivity(intent);
+                                }
+
+                            } catch (ParseException e) {
+                                Toast.makeText(getApplicationContext(), "Date parse error", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+
                             Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);

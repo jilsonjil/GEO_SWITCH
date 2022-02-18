@@ -17,14 +17,17 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.geo.utils.AlarmUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class timemessage extends AppCompatActivity {
     EditText editText,editText2;
@@ -89,6 +92,18 @@ public class timemessage extends AppCompatActivity {
                                   timemessagestore timessagestores=new timemessagestore(ft_cname,ft_pno,ft_dd,ft_msg,ft_time);
                                   timessagestores.setId(messageId);
                                   reference.child(String.valueOf(messageId)).setValue(timessagestores);
+
+                                  try {
+                                      Date date = new SimpleDateFormat("MMM d, yyyy hh:mm:a")
+                                              .parse(timessagestores.getDate() + " " + timessagestores.getTime());
+                                      new AlarmUtil(getApplicationContext()).scheduleSms(
+                                              timessagestores.getPhone_number(),ft_msg, date.getTime(), (int) timessagestores.getId()
+                                      );
+                                  } catch (ParseException e) {
+                                      Toast.makeText(getApplicationContext(), "Date parse error", Toast.LENGTH_SHORT).show();
+                                      e.printStackTrace();
+                                  }
+
                                   Toast.makeText(getApplicationContext(),"Save data Successfully",Toast.LENGTH_SHORT).show();
 
                                   Intent intent=new Intent(getApplicationContext(),dashboard.class);
@@ -143,6 +158,7 @@ public class timemessage extends AppCompatActivity {
         timemessagestore data=(timemessagestore) getIntent().getSerializableExtra("data");
         if(data !=null)
         {
+            messageId=data.getId();
            tim.getEditText().setText(data.getTime());
             dd.getEditText().setText(data.getDate());
             msg.getEditText().setText(data.getMessage());

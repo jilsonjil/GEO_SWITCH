@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,7 +75,7 @@ public class login extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else
-                                    { upassword.setError("Wrong Password");
+                                    { Snackbar.make(upassword,"invalid  password",Snackbar.LENGTH_SHORT).show();
 
                                     }
 
@@ -94,7 +95,7 @@ public class login extends AppCompatActivity {
                     }
                     else
                     {
-                        upassword.setError("Please enter your password");
+                        Snackbar.make(upassword,"Please Enter your password",Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 else

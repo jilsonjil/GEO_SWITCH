@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,7 +62,7 @@ public class register extends AppCompatActivity {
 
                 if (!Sphone.isEmpty() && Sphone.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$")) {
                     phone.setError(null);
-                    if (!Su_name.isEmpty()&&Su_name.matches("[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$")) {
+                    if (!Su_name.isEmpty()&&Su_name.matches("[a-zA-Z0-9]+([._])*$")) {
                         u_name.setError(null);
 
                         if (!Spass.isEmpty()) {
@@ -155,7 +156,7 @@ public class register extends AppCompatActivity {
                                         }
 
                                     } else {
-                                        pass.setError("At least 8 chars, one digit,one lower alpha char and one upper alpha char,one special chars");
+                                        Snackbar.make(pass,"At least 8 chars, one digit,one lower alpha char and one upper alpha char,one special chars",Snackbar.LENGTH_SHORT).show();
                                     }
                                 } else {
                                     mail.setError("Invalid email");
@@ -164,7 +165,7 @@ public class register extends AppCompatActivity {
                                 cpass.setError("Password doe's not match ");
                             }
                         } else {
-                            pass.setError("Please enter Your password");
+                            Snackbar.make(pass,"Please Enter your password",Snackbar.LENGTH_SHORT).show();
                         }
                     } else {
                         u_name.setError("Enter Valid username");

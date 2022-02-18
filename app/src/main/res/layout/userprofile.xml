@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@drawable/back"
+            android:background="@drawable/dbg1"
             android:padding="20dp">
 
             <ImageView
@@ -32,7 +32,7 @@
                 android:layout_toRightOf="@id/profile_image"
                 android:fontFamily="@font/aclonica"
                 android:includeFontPadding="false"
-                android:text="JILSON JOSE"
+                android:text="NAME"
                 android:textSize="20sp" />
 
             <TextView
@@ -74,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/u_name"
+                android:enabled="false"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -140,6 +140,7 @@ public class locationconnectivity extends AppCompatActivity {
         locationconnectivitystore data = (locationconnectivitystore) getIntent().getSerializableExtra("data");
         if (data != null) {
             location = data.getLocation();
+            coId=data.getId();
             dd.getEditText().setText(data.getDate());
             add.getEditText().setText(data.getAddress());
 

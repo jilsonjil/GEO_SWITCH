@@ -156,20 +156,20 @@
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>#
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/uinfo"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="32dp"
-            android:drawablePadding="16dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:text="*Only contains alphanumeric characters, underscore and dot,Number of characters must be between 8 to 20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uname"/>
+<!--        <TextView-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="fill_parent"-->
+<!--            android:id="@+id/uinfo"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:layout_marginEnd="32dp"-->
+<!--            android:drawablePadding="16dp"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textMultiLine"-->
+<!--            android:text="*Only contains alphanumeric characters, underscore and dot,Number of characters must be between 8 to 20"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/uname"/>-->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/phonenumber"
@@ -185,7 +185,7 @@
             app:prefixText="+91"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uinfo"
+            app:layout_constraintTop_toBottomOf="@+id/uname"
              >
 
 
