@@ -90,7 +90,9 @@ public class locationreminder extends AppCompatActivity {
                                     String fl_rad = rad.getEditText().getText().toString();
                                     String fl_loc = loc.getEditText().getText().toString();
 
-                                    locationreminderstore locreminderstores = new locationreminderstore(fl_tittle, fl_dd, fl_task, fl_rad, location);
+                                    String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
+
+                                    locationreminderstore locreminderstores = new locationreminderstore(fl_tittle, date, fl_task, fl_rad, location);
                                     locreminderstores.setId((int)reminderId );
 
                                     new GeoFenceUtil(locationreminder.this).addToGeoFence(

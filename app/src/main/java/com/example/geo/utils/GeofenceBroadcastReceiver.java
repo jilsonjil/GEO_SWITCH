@@ -52,6 +52,8 @@ public class GeofenceBroadcastReceiver extends BroadcastReceiver {
                         if (data != null) {
                             new NotificationUtil(context)
                                     .showNotification("GeoLocation",data.getReminder());
+                            GeoFenceUtil geoFenceUtil = new GeoFenceUtil(context);
+                            geoFenceUtil.removeGeoFence(reqId);
                         }
 
                     });

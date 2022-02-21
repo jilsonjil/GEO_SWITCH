@@ -23,40 +23,22 @@ import java.util.ArrayList;
 
 public class GeoFenceUtil {
 
-    Activity context;
+    Context context;
     private GeofencingClient geofencingClient;
 
-    public GeoFenceUtil(Activity context) {
+    public GeoFenceUtil(Context context) {
         this.context = context;
         geofencingClient = LocationServices.getGeofencingClient(context);
     }
 
-    public void addToGeoFence(int id, double latitude, double longitude, int radius) {
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            Log.d("GEOFENCE", "Permisson false");
-            ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},112);
-            return;
-        }
+    public void removeGeoFence(String id) {
+        ArrayList<String> ids = new ArrayList<>();
+        ids.add(id);
+        geofencingClient.removeGeofences(ids);
+    }
 
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            Log.d("GEOFENCE", "Permission background false");
-            ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION},112);
-            return;
-        }
+    public void addToGeoFence(int id, double latitude, double longitude, int radius) {
+
         Log.d("GEOFENCE", "Permisson true");
         geofencingClient.addGeofences(getGeofencingRequest(new Geofence.Builder()
                         .setRequestId(String.valueOf(id))

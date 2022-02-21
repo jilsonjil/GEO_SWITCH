@@ -9,9 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.geo.R;
-import com.example.geo.locationmessagestore;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +31,7 @@ public class LocationMessageRecyclerView extends RecyclerView.Adapter<RecyclerVi
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationconnectivityviewlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showlist,parent,false);
         return new LocationMessageRecyclerView.ReminderViewHolder(view);
 
     }
@@ -43,8 +40,11 @@ public class LocationMessageRecyclerView extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         locationmessagestore data = locmessageList.get(position);
         TextView info = holder.itemView.findViewById(R.id.info);
+        TextView date=holder.itemView.findViewById(R.id.date);
+        date.setText(data.getDate());
         ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getContact_name());
+
         ImageView img=holder.itemView.findViewById(R.id.img_edit);
         img.setOnClickListener(v -> {
             listener.Onclick(data);

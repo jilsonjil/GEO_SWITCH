@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +21,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class userprofile extends AppCompatActivity {
     TextView f_name,u_name;
-    EditText tname,tuname,tmail,tphone;
+    TextInputEditText tname,tuname,tmail,tphone;
+
+    Button btn;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference reference;
+    String names;
 
 
     @Override
@@ -26,6 +35,12 @@ public class userprofile extends AppCompatActivity {
         setContentView(R.layout.userprofile);
         initUi();
         getdataFromDb();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update();
+            }
+        });
 
 
     }
@@ -36,6 +51,22 @@ public class userprofile extends AppCompatActivity {
         tuname=findViewById(R.id.u_name);
         tmail=findViewById(R.id.u_mail);
         tphone=findViewById(R.id.u_phone);
+        btn=findViewById(R.id.update);
+
+    }
+    private void update()
+    {
+      //  reference=FirebaseDatabase.getInstance().getReference("user");
+       //reference.child("profile/name").setValue(tname.getText().toString());
+        SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
+        String userId = pref.getString("userId","");
+        final  FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
+        DatabaseReference reference=firebaseDatabase.getReference("user").child(userId).child("profile");
+        String name = tname.getText().toString();
+        reference.child("name").setValue(name);
+
+       Intent intent = new Intent(getApplicationContext(), dashboard.class);
+        startActivity(intent);
 
     }
     private void getdataFromDb()
@@ -68,5 +99,4 @@ public class userprofile extends AppCompatActivity {
         });
 
     }
-
 }

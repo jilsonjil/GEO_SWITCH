@@ -26,7 +26,8 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
         }
 
-        if (isSms) {
+        if (isSms)
+        {
             String number = intent.getStringExtra("contact");
             String content = intent.getStringExtra("content");
             SmsManager smsManager = SmsManager.getDefault();

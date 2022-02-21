@@ -37,6 +37,7 @@ public class locationmessageview extends AppCompatActivity implements LocationMe
 
         SharedPreferences pref = getSharedPreferences("mypref", Context.MODE_PRIVATE);
         String uname = pref.getString("userId", "");
+        String dd=pref.getString("userId", "");
         FirebaseDatabase.getInstance().getReference("user").child(uname)
                 .child("location_message").addValueEventListener(new ValueEventListener() {
             @Override

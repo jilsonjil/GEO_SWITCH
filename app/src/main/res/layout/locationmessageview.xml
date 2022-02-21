@@ -44,9 +44,11 @@
         app:layout_constraintVertical_bias="1.0"/>
     <TextView
         android:id="@+id/notfound"
-        android:layout_width="288dp"
-        android:layout_height="205dp"
-        android:text="No Details found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NO DETAILS FOUND"
+        android:textStyle="bold"
+        android:textAlignment="center"
         android:textColor="@color/primarydark"
         android:visibility="gone"
         android:textSize="50sp"

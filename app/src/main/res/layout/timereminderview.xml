@@ -19,7 +19,7 @@
             android:layout_width="416dp"
             android:layout_height="94dp"
             android:gravity="center"
-            android:text="LIST OF MESSAGE"
+            android:text="LIST OF REMINDER"
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/primarydark"
@@ -43,9 +43,11 @@
         app:layout_constraintVertical_bias="1.0"/>
     <TextView
         android:id="@+id/notfound"
-        android:layout_width="288dp"
-        android:layout_height="205dp"
-        android:text="No Details found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NO DETAILS FOUND"
+        android:textAlignment="center"
+        android:textStyle="bold"
         android:visibility="gone"
         android:textColor="@color/primarydark"
         android:textSize="50sp"

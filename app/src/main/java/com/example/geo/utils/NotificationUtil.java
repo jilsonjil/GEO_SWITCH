@@ -25,7 +25,7 @@ public class NotificationUtil {
         Notification notification = new NotificationCompat.Builder(context, "alarmNot")
                 .setContentText(msgTtext)
                 .setContentTitle(msgTitle)
-                .setSmallIcon(R.drawable.menu)
+                .setSmallIcon(R.drawable.geologo)
                 .build();
         NotificationManagerCompat.from(context).notify(
                 1, notification

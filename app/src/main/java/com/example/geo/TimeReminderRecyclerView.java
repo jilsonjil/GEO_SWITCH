@@ -28,7 +28,7 @@ public class TimeReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationconnectivityviewlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showlist,parent,false);
         return new TimeReminderRecyclerView.ReminderViewHolder(view);
 
     }
@@ -39,6 +39,8 @@ public class TimeReminderRecyclerView extends RecyclerView.Adapter<RecyclerView.
         TextView info = holder.itemView.findViewById(R.id.info);
         ImageView delete = holder.itemView.findViewById(R.id.img_delete);
         info.setText(data.getTittle());
+        TextView date=holder.itemView.findViewById(R.id.date);
+        date.setText(data.getDate());
         ImageView img=holder.itemView.findViewById(R.id.img_edit);
 
         img.setOnClickListener(v -> {
