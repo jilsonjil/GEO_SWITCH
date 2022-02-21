@@ -59,16 +59,16 @@ public class locationmessage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String l_cname=co_name.getEditText().getText().toString();
-                String l_dd=dd.getEditText().getText().toString();
+                //String l_dd=dd.getEditText().getText().toString();
                 String l_pno=phn_no.getEditText().getText().toString();
                 String l_msg=msg.getEditText().getText().toString();
                 String l_loc=loc.getEditText().getText().toString();
                 if(!l_cname.isEmpty()) {
                     co_name.setError(null);
 
-                    if(!l_dd.isEmpty())
-                    {
-                        dd.setError(null);
+                    //if(!l_dd.isEmpty())
+                   // {
+                     //   dd.setError(null);
 
                         if(!l_pno.isEmpty()&&l_pno.matches("^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"))
                         {
@@ -87,11 +87,12 @@ public class locationmessage extends AppCompatActivity {
                                     firebaseDatabase = FirebaseDatabase.getInstance();
                                     reference = firebaseDatabase.getReference("user").child(uname).child("location_message");
                                     String fl_cname=co_name.getEditText().getText().toString();
-                                    String fl_dd=dd.getEditText().getText().toString();
+                                    //String fl_dd=dd.getEditText().getText().toString();
                                     String fl_pno=phn_no.getEditText().getText().toString();
                                     String fl_msg=msg.getEditText().getText().toString();
                                     String fl_loc=loc.getEditText().getText().toString();
-                                    locationmessagestore locmessagestores = new locationmessagestore(fl_cname,fl_pno,fl_dd,fl_msg,location);
+                                    String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
+                                    locationmessagestore locmessagestores = new locationmessagestore(fl_cname,fl_pno,date,fl_msg,location);
                                     locmessagestores.setId(messageId);
                                     reference.child(String.valueOf(messageId)).setValue(locmessagestores);
 
@@ -116,11 +117,11 @@ public class locationmessage extends AppCompatActivity {
                             phn_no.setError("Enter valid phone number");
                         }
                     }
-                    else
-                    {
-                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
+                  //  else
+                   // {
+                   //     Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
+                   // }
+               // }
                 else
                 {
                     co_name.setError("Enter Contact name");
@@ -128,7 +129,7 @@ public class locationmessage extends AppCompatActivity {
 
             }
         });
-        dd.setEndIconOnClickListener(v -> {
+/*        dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -145,7 +146,7 @@ public class locationmessage extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
-        });
+        });*/
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,12 +165,13 @@ public class locationmessage extends AppCompatActivity {
         {
             location = data.getLocation();
             messageId = data.getId();
-            dd.getEditText().setText(data.getDate());
+         //   dd.getEditText().setText(data.getDate());
             msg.getEditText().setText(data.getMessage());
             phn_no.getEditText().setText(data.getPhone_number());
             co_name.getEditText().setText(data.getContact_name());
             if (location != null && !location.isEmpty()) {
                 setLocationTitle(location.get(1), location.get(0));
+
             }
         }
     }

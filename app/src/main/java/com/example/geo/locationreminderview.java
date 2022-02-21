@@ -53,7 +53,9 @@ public class locationreminderview extends AppCompatActivity implements LocationR
                     locationreminderstore locreminderstores = postSnapshot.getValue(locationreminderstore.class);
                     SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
                     try {
-                        if (format.parse(locreminderstores.getDate()).getTime() >= System.currentTimeMillis())
+                        if (format.parse(locreminderstores.getDate()).getTime() >= (System.currentTimeMillis() - (
+                                1000 * 60 *  60 * 24
+                                )) )
                         data.add(locreminderstores);
                     } catch (ParseException e) {
                         e.printStackTrace();

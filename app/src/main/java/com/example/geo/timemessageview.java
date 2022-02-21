@@ -1,6 +1,7 @@
 package com.example.geo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,7 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class timemessageview extends AppCompatActivity implements TimeMessageRecyclerView.OnclickListener {
 TimeMessageRecyclerView adapter;
@@ -37,16 +42,39 @@ TimeMessageRecyclerView adapter;
         String uname=pref.getString("userId","");
         FirebaseDatabase.getInstance().getReference("user").child(uname)
                 .child("time_message").addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<timemessagestore> data = new ArrayList<>();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     timemessagestore timemessagestores = postSnapshot.getValue(timemessagestore.class);
-                    data.add(timemessagestores);
+                    SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+                    try {
+                        if (format.parse(timemessagestores.getDate()).getTime() >= (System.currentTimeMillis() - (
+                                1000 * 60 *  60 * 24
+                        )) )
+                            data.add(timemessagestores);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                
 
                 }
                 if(!data.isEmpty()) {
                     textView.setVisibility(View.INVISIBLE);
+                    data.sort(new Comparator<timemessagestore>() {
+                        @Override
+                        public int compare(timemessagestore o1, timemessagestore o2) {
+                            SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+                            try {
+                                return (int) (format.parse(o2.getDate()).getTime() - format.parse(o1.getDate()).getTime());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            return 0;
+                        }
+                    });
                     adapter.add(data);
 
                 }

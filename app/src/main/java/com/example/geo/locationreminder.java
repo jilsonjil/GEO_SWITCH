@@ -50,11 +50,10 @@ public class locationreminder extends AppCompatActivity {
         setContentView(R.layout.locreminder);
         reminderId = System.currentTimeMillis();
         ltitle = findViewById(R.id.tittle);
-        dd = findViewById(R.id.date);
         task = findViewById(R.id.reminder);
         rad = findViewById(R.id.radius);
         loc = findViewById(R.id.location);
-        editText = findViewById(R.id.edate);
+       // editText = findViewById(R.id.edate);
         view = findViewById(R.id.showreminder);
 
         savebtn = findViewById(R.id.rlsave);
@@ -62,15 +61,15 @@ public class locationreminder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String l_tittle = ltitle.getEditText().getText().toString();
-                String l_dd = dd.getEditText().getText().toString();
+               // String l_dd = dd.getEditText().getText().toString();
                 String l_task = task.getEditText().getText().toString();
                 String l_rad = rad.getEditText().getText().toString();
                 String l_loc = loc.getEditText().getText().toString();
 
                 if (!l_tittle.isEmpty()) {
                     ltitle.setError(null);
-                    if (!l_dd.isEmpty()) {
-                        dd.setError(null);
+                  //  if (!l_dd.isEmpty()) {
+                    //    dd.setError(null);
 
                         if (!l_task.isEmpty()) {
                             task.setError(null);
@@ -85,7 +84,7 @@ public class locationreminder extends AppCompatActivity {
                                     firebaseDatabase = FirebaseDatabase.getInstance();
                                     reference = firebaseDatabase.getReference("user").child(uname).child("location_reminder");
                                     String fl_tittle = ltitle.getEditText().getText().toString();
-                                    String fl_dd = dd.getEditText().getText().toString();
+                                    //String fl_dd = dd.getEditText().getText().toString();
                                     String fl_task = task.getEditText().getText().toString();
                                     String fl_rad = rad.getEditText().getText().toString();
                                     String fl_loc = loc.getEditText().getText().toString();
@@ -116,15 +115,16 @@ public class locationreminder extends AppCompatActivity {
                         } else {
                             task.setError("Enter reminder ");
                         }
-                    } else {
-                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
-                    }
-                } else {
+                    }// else {
+                        //Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
+                    //}
+                //}
+                else {
                     ltitle.setError("Enter Tittle");
                 }
             }
         });
-        dd.setEndIconOnClickListener(v -> {
+       /* dd.setEndIconOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             if (!dd.getEditText().getText().toString().isEmpty()) {
                 try {
@@ -153,7 +153,7 @@ public class locationreminder extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
-        });
+        });*/
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +179,7 @@ public class locationreminder extends AppCompatActivity {
             task.getEditText().setText(data.getReminder());
             rad.getEditText().setText(data.getRadius());
             location = data.getLocation();
-            dd.getEditText().setText(data.getDate());
+            //dd.getEditText().setText(data.getDate());
             reminderId = data.getId();
             if (location != null && !location.isEmpty()) {
                 setLocationTitle(location.get(1), location.get(0));

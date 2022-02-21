@@ -101,30 +101,7 @@
 
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:endIconMode="custom"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            app:endIconDrawable="@drawable/ic_calendar_549"
-            android:hint="Date">
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:enabled="false"
-                android:inputType="date"/>
-
-
-
-        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

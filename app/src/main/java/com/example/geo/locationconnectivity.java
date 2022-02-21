@@ -46,10 +46,10 @@ public class locationconnectivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connectivityl);
         ltittle = findViewById(R.id.tittle);
-        dd = findViewById(R.id.date);
+       // dd = findViewById(R.id.date);
         loc = findViewById(R.id.location);
         coId = System.currentTimeMillis();
-        add = findViewById(R.id.address);
+        //add = findViewById(R.id.address);
         editText = findViewById(R.id.edate);
         Calendar calendar = Calendar.getInstance();
         view = findViewById(R.id.showconnect);
@@ -58,17 +58,17 @@ public class locationconnectivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String l_tittle = ltittle.getEditText().getText().toString();
-                String l_dd = dd.getEditText().getText().toString();
+//                String l_dd = dd.getEditText().getText().toString();
                 String l_loc = loc.getEditText().getText().toString();
-                String l_add = add.getEditText().getText().toString();
+        //        String l_add = add.getEditText().getText().toString();
                 if (!l_tittle.isEmpty()) {
                     ltittle.setError(null);
 
-                    if (!l_dd.isEmpty()) {
+                    /*if (!l_dd.isEmpty()) {
                         dd.setError(null);
 
                         if (!l_add.isEmpty()) {
-                            add.setError(null);
+                            add.setError(null);*/
 
                             if (!l_loc.isEmpty()) {
                                 loc.setError(null);
@@ -78,10 +78,11 @@ public class locationconnectivity extends AppCompatActivity {
                                 firebaseDatabase = FirebaseDatabase.getInstance();
                                 reference = firebaseDatabase.getReference("user").child(uname).child("location_connectivity");
                                 String fl_tittle = ltittle.getEditText().getText().toString();
-                                String fl_dd = dd.getEditText().getText().toString();
+                                //String fl_dd = dd.getEditText().getText().toString();
                                 String fl_loc = loc.getEditText().getText().toString();
-                                String fl_add = add.getEditText().getText().toString();
-                                locationconnectivitystore locconnectivitystores = new locationconnectivitystore(fl_tittle, fl_dd, fl_add, location);
+                                //String fl_add = add.getEditText().getText().toString();
+                                String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
+                                locationconnectivitystore locconnectivitystores = new locationconnectivitystore(fl_tittle, date, location);
                                 locconnectivitystores.setId(coId);
                                 reference.child(String.valueOf(coId)).setValue(locconnectivitystores);
                                 Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
@@ -92,20 +93,22 @@ public class locationconnectivity extends AppCompatActivity {
                             } else {
                                 Snackbar.make(loc,"Select Location",Snackbar.LENGTH_SHORT).show();
                             }
-                        } else {
+                        }
+                /*else {
                             add.setError("Enter address");
                         }
                     } else {
                         Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
                     }
-                } else {
+                } */
+                else {
                     ltittle.setError("Enter tittle");
 
                 }
             }
         });
 
-        dd.setEndIconOnClickListener(v -> {
+        /*dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -122,7 +125,7 @@ public class locationconnectivity extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
-        });
+        });*/
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,8 +144,8 @@ public class locationconnectivity extends AppCompatActivity {
         if (data != null) {
             location = data.getLocation();
             coId=data.getId();
-            dd.getEditText().setText(data.getDate());
-            add.getEditText().setText(data.getAddress());
+//            dd.getEditText().setText(data.getDate());
+           // add.getEditText().setText(data.getAddress());
 
             ltittle.getEditText().setText(data.getTittle());
             if (location != null && !location.isEmpty()) {

@@ -50,7 +50,7 @@ public class locationmobileprofile extends AppCompatActivity {
         setContentView(R.layout.mprofilel);
         ltittle=findViewById(R.id.tittle);
         profileid=System.currentTimeMillis();
-        dd=findViewById(R.id.date);
+       // dd=findViewById(R.id.date);
         lloc=findViewById(R.id.rlocation);
         editText=findViewById(R.id.edate);
         rg=findViewById(R.id.rdg);
@@ -61,7 +61,7 @@ public class locationmobileprofile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String l_tittle=ltittle.getEditText().getText().toString();
-                String l_dd=dd.getEditText().getText().toString();
+//                String l_dd=dd.getEditText().getText().toString();
                 String l_loc=lloc.getEditText().getText().toString();
                 int radio=rg.getCheckedRadioButtonId();
                 rb=findViewById(radio);
@@ -70,9 +70,9 @@ public class locationmobileprofile extends AppCompatActivity {
                 {
                     ltittle.setError(null);
 
-                    if (!l_dd.isEmpty())
-                    {
-                        dd.setError(null);
+                  //  if (!l_dd.isEmpty())
+                   // {
+                      //  dd.setError(null);
 
                         if (!l_loc.isEmpty())
                         {
@@ -83,10 +83,11 @@ public class locationmobileprofile extends AppCompatActivity {
                             firebaseDatabase = FirebaseDatabase.getInstance();
                             reference = firebaseDatabase.getReference("user").child(uname).child("location_mobileprofile");
                             String fl_tittle = ltittle.getEditText().getText().toString();
-                            String fl_dd = dd.getEditText().getText().toString();
+//                            String fl_dd = dd.getEditText().getText().toString();
                             String fl_rb=rb.getText().toString();
+                            String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
 
-                            locationmobileprofilestore locmprofiles = new locationmobileprofilestore(fl_tittle,fl_dd,fl_rb,location);
+                            locationmobileprofilestore locmprofiles = new locationmobileprofilestore(fl_tittle,date,fl_rb,location);
                             locmprofiles.setId(profileid);
                             reference.child(String.valueOf(profileid)).setValue(locmprofiles);
                             Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
@@ -100,18 +101,18 @@ public class locationmobileprofile extends AppCompatActivity {
                             Snackbar.make(lloc,"Select Location",Snackbar.LENGTH_SHORT).show();
                         }
                     }
-                    else
-                    {
-                        Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
-                    }
-                }
+                   // else
+                  //  {
+                  //      Snackbar.make(dd,"Select Date",Snackbar.LENGTH_SHORT).show();
+                 //   }
+               // }
                 else
                 {
                     ltittle.setError("Enter Tittle");
                 }
             }
         });
-        dd.setEndIconOnClickListener(v -> {
+        /*dd.setEndIconOnClickListener(v -> {
             year = calendar.get(Calendar.YEAR);
             month = calendar.get(Calendar.MONTH);
             day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -128,7 +129,7 @@ public class locationmobileprofile extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
 
-        });
+        });*/
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +147,7 @@ public class locationmobileprofile extends AppCompatActivity {
         if(data !=null)
         {
             ltittle.getEditText().setText(data.getTittle());
-            dd.getEditText().setText(data.getDate());
+//            dd.getEditText().setText(data.getDate());
             profileid=data.getId();
             location=data.getLocation();
             if (data.getProfile().equals("Silent Mode")) {

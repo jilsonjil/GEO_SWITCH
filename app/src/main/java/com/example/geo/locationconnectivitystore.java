@@ -10,16 +10,15 @@ public class locationconnectivitystore implements Serializable {
 
 
 
-    String Address;
     List<Double> Location;
 
     public locationconnectivitystore() {
     }
 
-    public locationconnectivitystore(String Tittle, String Date, String Address, List<Double> Location) {
+    public locationconnectivitystore(String Tittle, String Date, List<Double> Location) {
         this.Tittle = Tittle;
         this.Date = Date;
-        this.Address = Address;
+
         this.Location = Location;
     }
     public long getId() {
@@ -45,13 +44,7 @@ public class locationconnectivitystore implements Serializable {
         Date = date;
     }
 
-    public String getAddress() {
-        return Address;
-    }
 
-    public void setAddress(String address) {
-        Address = address;
-    }
 
     public List<Double> getLocation() {
         return Location;

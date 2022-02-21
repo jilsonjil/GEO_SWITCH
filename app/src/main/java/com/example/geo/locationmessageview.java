@@ -1,6 +1,7 @@
 package com.example.geo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +20,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class locationmessageview extends AppCompatActivity implements LocationMessageRecyclerView.OnclickListener {
     LocationMessageRecyclerView adapter;
@@ -40,16 +45,40 @@ public class locationmessageview extends AppCompatActivity implements LocationMe
         String dd=pref.getString("userId", "");
         FirebaseDatabase.getInstance().getReference("user").child(uname)
                 .child("location_message").addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<locationmessagestore> data = new ArrayList<>();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     locationmessagestore locationmessagestores = postSnapshot.getValue(locationmessagestore.class);
-                    data.add(locationmessagestores);
+                    SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+                    try {
+                        if (format.parse(locationmessagestores.getDate()).getTime() >= (System.currentTimeMillis() - (
+                                1000 * 60 *  60 * 24
+                        )) )
+                            data.add(locationmessagestores);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
 
                 }
                 if(!data.isEmpty()) {
                     textView.setVisibility(View.INVISIBLE);
+                    data.sort(new Comparator<locationmessagestore>() {
+                        @Override
+                        public int compare(locationmessagestore o1, locationmessagestore o2) {
+                            SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy");
+                            try {
+                                return (int) (format.parse(o2.getDate()).getTime() - format.parse(o1.getDate()).getTime());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            return 0;
+                        }
+                    });
+
                     adapter.add(data);
 
                 }
