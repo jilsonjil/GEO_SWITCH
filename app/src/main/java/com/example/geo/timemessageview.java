@@ -58,7 +58,7 @@ TimeMessageRecyclerView adapter;
                         e.printStackTrace();
                     }
 
-                
+
 
                 }
                 if(!data.isEmpty()) {

@@ -18,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.geo.utils.GeoFenceUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -83,9 +84,12 @@ public class locationconnectivity extends AppCompatActivity {
                                 //String fl_add = add.getEditText().getText().toString();
                                 String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
                                 locationconnectivitystore locconnectivitystores = new locationconnectivitystore(fl_tittle, date, location);
-                                locconnectivitystores.setId(coId);
-                                reference.child(String.valueOf(coId)).setValue(locconnectivitystores);
+                                locconnectivitystores.setId((int)coId);
+                                reference.child(String.valueOf((int)coId)).setValue(locconnectivitystores);
                                 Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
+                                new GeoFenceUtil(locationconnectivity.this).addToGeoFence(
+                                        (int) coId, location.get(1), location.get(0),1000
+                                );
                                 Intent intent = new Intent(getApplicationContext(), dashboard.class);
                                 startActivity(intent);
 

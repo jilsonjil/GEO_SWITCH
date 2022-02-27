@@ -63,10 +63,18 @@ public class userprofile extends AppCompatActivity {
         final  FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference reference=firebaseDatabase.getReference("user").child(userId).child("profile");
         String name = tname.getText().toString();
-        reference.child("name").setValue(name);
+        if(!name.isEmpty()) {
 
-       Intent intent = new Intent(getApplicationContext(), dashboard.class);
-        startActivity(intent);
+
+            reference.child("name").setValue(name);
+
+            Intent intent = new Intent(getApplicationContext(), dashboard.class);
+            startActivity(intent);
+        }
+        else
+        {
+            tname.setError("name field is empty");
+        }
 
     }
     private void getdataFromDb()

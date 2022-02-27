@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.geo.utils.GeoFenceUtil;
 import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -88,8 +89,11 @@ public class locationmobileprofile extends AppCompatActivity {
                             String date = new SimpleDateFormat("MMM dd, yyyy").format(Calendar.getInstance().getTime());
 
                             locationmobileprofilestore locmprofiles = new locationmobileprofilestore(fl_tittle,date,fl_rb,location);
-                            locmprofiles.setId(profileid);
-                            reference.child(String.valueOf(profileid)).setValue(locmprofiles);
+                            locmprofiles.setId((int)profileid);
+                            reference.child(String.valueOf(((int) profileid))).setValue(locmprofiles);
+                            new GeoFenceUtil(locationmobileprofile.this).addToGeoFence(
+                                    (int) profileid, location.get(1), location.get(0),1000
+                            );
                             Toast.makeText(getApplicationContext(), "Save data Successfully", Toast.LENGTH_SHORT).show();
 
                             Intent intent=new Intent(getApplicationContext(),dashboard.class);

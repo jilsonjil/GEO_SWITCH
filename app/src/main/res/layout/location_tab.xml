@@ -187,7 +187,7 @@
                         android:layout_below="@id/connectivity"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="CONNECTIVITY"
+                        android:text="WEATHER"
                         android:textSize="12sp"
                         app:fontFamily="@font/aclonica" />
 
@@ -197,7 +197,7 @@
                         android:layout_height="75dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        app:srcCompat="@drawable/wifi" />
+                        app:srcCompat="@drawable/weather" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

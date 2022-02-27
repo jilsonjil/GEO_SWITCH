@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,10 +19,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class locationconnectivityview extends AppCompatActivity implements LocationConnectivityRecyclerView.OnclickListener{
 
@@ -95,6 +99,24 @@ public class locationconnectivityview extends AppCompatActivity implements Locat
             }
         });
        
+    }
+
+    public String getData(String lat, String lon) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("https://api.openweathermap.org/data/2.5/weather?lat="+lat
+                        +"&lon="+lon+"&appid=89c5f723d5950889ae093e798e4b1f37")
+                .build();
+
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override

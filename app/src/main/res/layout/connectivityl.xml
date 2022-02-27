@@ -11,14 +11,14 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/wifii"
+        android:src="@drawable/weather"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/aclonica"
-        android:text="SET CONNECTIVITY"
+        android:text="Check Weather"
         android:textColor="@color/background"
         android:textColorLink="#F44336"
         android:textSize="20sp" />
@@ -91,7 +91,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SHOW CONNECTVITY"
+        android:text="SHOW CHECK WEATHER DETAILS"
         android:id="@+id/showconnect"
         android:textColor="@color/black"
         android:backgroundTint="@color/white"
