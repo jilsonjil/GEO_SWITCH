@@ -1,5 +1,6 @@
 package com.example.geo;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -32,6 +34,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class locationmessage extends AppCompatActivity {
+    private static final int RESULT_PICK_CONTACT=1;
     EditText editText;
     TextInputLayout co_name, phn_no, dd, msg, loc;
     int year, month, day;
@@ -153,6 +156,12 @@ public class locationmessage extends AppCompatActivity {
             Intent intent = new Intent(locationmessage.this, MapsActivity.class);
             startActivityForResult(intent, 102);
         });
+       phn_no.setEndIconOnClickListener(v -> {
+            Intent intent =new Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+            startActivityForResult(intent,RESULT_PICK_CONTACT);
+        });
+
+
         locationmessagestore data = (locationmessagestore) getIntent().getSerializableExtra("data");
         if (data != null) {
             location = data.getLocation();
@@ -184,6 +193,7 @@ public class locationmessage extends AppCompatActivity {
             setLocationTitle(lat, lon);
         }
     }
+    
 
     private void setLocationTitle(Double lat, Double lon) {
         String title = String.valueOf(lon) + "," + String.valueOf(lat);
@@ -207,4 +217,5 @@ public class locationmessage extends AppCompatActivity {
         loc.getEditText().setText(title);
 
     }
+
 }
